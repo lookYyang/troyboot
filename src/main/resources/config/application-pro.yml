@@ -1,0 +1,15 @@
+server:
+  address: 127.0.0.1
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+
+logging:
+  level:
+    root: info
+    com.orangehi.demo: info
+  file: logs/pro.log

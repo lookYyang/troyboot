@@ -1,0 +1,28 @@
+server:
+  session-timeout: 1800
+  address: 127.0.0.1
+  port: 9264
+  servlet:
+    context-path: /api/v1
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+  http:
+      encoding:
+        charset: utf-8
+  jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+  devtools:
+    restart:
+      enabled: true
+  cache:
+      type: redis
+  jpa:
+    hibernate:
+      # create每次创建，清除数据；update第一次创建，后面的如果字段改变就更新字段
+      ddl-auto: update
+    show-sql: true
