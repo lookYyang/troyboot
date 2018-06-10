@@ -1,6 +1,7 @@
 package com.troyboot.java.system.security.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.po.UserPo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
@@ -67,13 +68,12 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             return true;
         }
 
-
         Session session = subject.getSession();
-        UserPo user = (UserPo) subject.getPrincipal();
+        UserPo user = ShiroUtils.getUser();
         String username = user.getName();
         Serializable sessionId = session.getId();
 
-        //读取缓存   没有就存入
+        //读取缓存 没有就存入
         Deque<Serializable> deque = cache.get(username);
 
         //如果此用户没有session队列，也就是还没有登录过，缓存中没有

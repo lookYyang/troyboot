@@ -15,7 +15,9 @@ import java.util.Set;
  */
 public interface RoleDao extends JpaRepository<RolePo, Long>{
 
-    @Query(value = "select role from sys_role role left join sys_user_role ur on ur.role_id = role.id where ur.user_id = ?1",
+    @Query(value = "select role.* from sys_role role " +
+            "left join sys_user_role ur on ur.role_id = role.id " +
+            "where ur.user_id = ?1",
             nativeQuery = true)
     public Set<String> findRolesByUserId(Long id);
 
