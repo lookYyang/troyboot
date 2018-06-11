@@ -6,6 +6,7 @@ import com.troyboot.java.system.po.UserPo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +61,6 @@ public class LoginController {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
             System.out.println("是否拥有管理员权限："+ subject.hasRole("admin"));
             System.out.println("是否拥有vip会员权限："+ subject.hasRole("vip"));
-            
             return "redirect:/index";
         }else{
             token.clear();

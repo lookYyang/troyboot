@@ -2,6 +2,7 @@ package com.troyboot.java.system.security.shiro;
 
 import com.troyboot.java.common.utils.MD5Utils;
 import com.troyboot.java.common.utils.ShiroUtils;
+import com.troyboot.java.system.common.Constant;
 import com.troyboot.java.system.config.ApplicationContextRegister;
 import com.troyboot.java.system.po.UserPo;
 import com.troyboot.java.system.service.PermissionService;
@@ -65,7 +66,7 @@ public class ShiroRealm extends AuthorizingRealm {
                 // 第一个参数必须是一个实体类对象
                 SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, password, getName());
                 //设置盐，用来核对密码
-                authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(MD5Utils.SALT));
+                authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(Constant.PWD_SALT));
                 return authenticationInfo;
             }
         }

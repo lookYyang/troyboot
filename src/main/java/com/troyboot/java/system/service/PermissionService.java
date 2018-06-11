@@ -1,9 +1,11 @@
 package com.troyboot.java.system.service;
 
 import com.troyboot.java.system.dao.PermissionDao;
+import com.troyboot.java.system.po.PermissionPo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,6 +20,10 @@ public class PermissionService {
 
     public Set<String> findByUserId(long userId){
         return permissionDao.findByUserId(userId);
+    }
+
+    public List<PermissionPo> findAll(){
+        return permissionDao.findAll();
     }
 
 }

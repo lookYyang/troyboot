@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,10 +15,14 @@ import java.util.Set;
  */
 public interface PermissionDao extends JpaRepository<PermissionPo, Long>{
 
-    @Query(value = "select per.* from sys_permission per " +
+    @Query(value = "select per.permission from sys_permission per " +
             "left join sys_role_permission rp on rp.permission_id = per.id " +
             "left join sys_user_role ur on ur.role_id = rp.role_id where ur.user_id = ?1",
             nativeQuery = true)
     Set<String> findByUserId(long id);
+
+    @Query(value = "select * from sys_permission per", nativeQuery = true)
+    List<PermissionPo> findAll();
+
 
 }

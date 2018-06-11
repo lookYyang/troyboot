@@ -3,12 +3,12 @@ package com.troyboot.java.common.utils;
 import com.troyboot.java.system.po.UserPo;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ShiroUtils {
+
+public class ShiroUtils{
 
     public static Subject getSubject(){
         return SecurityUtils.getSubject();

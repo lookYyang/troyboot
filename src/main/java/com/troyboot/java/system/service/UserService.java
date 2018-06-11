@@ -33,4 +33,8 @@ public class UserService {
     public List<UserPo> getAllUsers(){
         return userDao.findAll();
     }
+
+    public int remove(Long id){
+        return userDao.removeById(id);
+    }
 }

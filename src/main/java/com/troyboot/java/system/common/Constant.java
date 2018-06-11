@@ -31,8 +31,8 @@ public class Constant {
     }
 
     /**
-     * 缺省的密码字段加解密钥
+     * 缺省的密码加盐
      */
-    public static final String PWD_KEY = "HY&XC&MW";
+    public static final String PWD_SALT = "TR%YY&LYQ";
 
 }

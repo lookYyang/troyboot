@@ -4,6 +4,7 @@ import com.troyboot.java.system.po.UserPo;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface UserDao extends JpaRepository<UserPo, Long>{
 
     UserPo findByAccount(String account);
 
-
+    @Transactional
+    int removeById(Long id);
 
 }

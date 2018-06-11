@@ -1,21 +1,21 @@
 package com.troyboot.java.common.utils;
 
+import com.troyboot.java.system.common.Constant;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
 public class MD5Utils {
-	public static final String SALT = "AEydhs";
 
 	private static final String ALGORITH_NAME = "md5";
 
 	private static final int HASH_ITERATIONS = 2;
 
 	public static String encrypt(String pswd) {
-		return new SimpleHash(ALGORITH_NAME, pswd, ByteSource.Util.bytes(SALT), HASH_ITERATIONS).toHex();
+		return new SimpleHash(ALGORITH_NAME, pswd, ByteSource.Util.bytes(Constant.PWD_SALT), HASH_ITERATIONS).toHex();
 	}
 
 	public static String encrypt(String username, String pswd) {
-		return new SimpleHash(ALGORITH_NAME, pswd, ByteSource.Util.bytes(username + SALT),
+		return new SimpleHash(ALGORITH_NAME, pswd, ByteSource.Util.bytes(username + Constant.PWD_SALT),
 				HASH_ITERATIONS).toHex();
 	}
 

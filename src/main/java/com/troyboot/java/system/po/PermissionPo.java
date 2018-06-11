@@ -28,16 +28,18 @@ public class PermissionPo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Long parent_id;
+
     private String name;
-
-    @Column(columnDefinition = "enum('menu', 'button')")
-    private String resource_type;
-
-    private String url;
 
     private String permission;//menu:role.*;button:role:create,role:update
 
-    private Long parent_id;
+    private String url;
+
+    //0目录;1菜单;2按钮
+    private String type;
+
+    private String icon;
 
     private int is_enable = Constant.YesOrNo.YES.getValue();
 
