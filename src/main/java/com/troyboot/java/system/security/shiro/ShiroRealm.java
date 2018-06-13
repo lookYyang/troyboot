@@ -16,6 +16,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.StringUtils;
 
 /**
  * @Authour YangYang
@@ -57,6 +58,8 @@ public class ShiroRealm extends AuthorizingRealm {
 
         // 账号不存在
         if (user == null) {
+            throw new UnknownAccountException("账号或密码不正确");
+        }else if(!password.equals(user.getPassword())){
             throw new UnknownAccountException("账号或密码不正确");
         }else {
             // 账号锁定

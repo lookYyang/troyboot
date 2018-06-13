@@ -74,7 +74,13 @@ public class ShiroConfig {
         * anon:所有url都都可以匿名访问
         *
         * */
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/fonts/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/docs/**", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
+
         filterChainDefinitionMap.put("/login", "anon");
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
