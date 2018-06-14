@@ -1,29 +1,32 @@
 package com.troyboot.java.system.service;
 
-import com.troyboot.java.system.dao.PermissionDao;
+import com.troyboot.java.system.domain.Tree;
 import com.troyboot.java.system.po.PermissionPo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-/**
- * @Authour YangYang
- * @Date 2018/6/7 10:43
- */
 @Service
-public class PermissionService {
+public interface PermissionService {
+	Tree<PermissionPo> getPermissionTree(Long id);
 
-    @Autowired
-    private PermissionDao permissionDao;
+	List<Tree<PermissionPo>> listPermissionTree(Long id);
 
-    public Set<String> findByUserId(long userId){
-        return permissionDao.findByUserId(userId);
-    }
+	Tree<PermissionPo> getTree();
 
-    public List<PermissionPo> findAll(){
-        return permissionDao.findAll();
-    }
+	Tree<PermissionPo> getTree(Long id);
 
+	List<PermissionPo> list(Map<String, Object> params);
+
+	int remove(Long id);
+
+	int save(PermissionPo menu);
+
+	int update(PermissionPo menu);
+
+	PermissionPo get(Long id);
+
+	Set<String> listPerms(Long userId);
 }

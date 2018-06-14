@@ -1,6 +1,7 @@
 package com.troyboot.java.system.controller;
 
 import com.troyboot.java.common.utils.OutMessage;
+import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.po.UserPo;
 import com.troyboot.java.system.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -59,5 +60,15 @@ public class UserController {
         }else {
             return OutMessage.error();
         }
+    }
+
+    @GetMapping("/personal")
+    @ApiOperation(value = "获取当前用户信息", httpMethod = "GET", response = UserPo.class, notes = "获取当前登录用户信息")
+    public String personal(Model model){
+        UserPo userPo = ShiroUtils.getUser();
+        model.addAttribute("personal", userPo);
+        // TODO
+        // 这个地方先这样显示一下，到时候修改用户的时候，这里返回到修改用户的界面
+        return "main";
     }
 }

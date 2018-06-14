@@ -3,7 +3,10 @@ package com.troyboot.java.system.controller;
 import com.troyboot.java.common.utils.MD5Utils;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
+import com.troyboot.java.system.domain.Tree;
+import com.troyboot.java.system.po.PermissionPo;
 import com.troyboot.java.system.po.UserPo;
+import com.troyboot.java.system.service.PermissionService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -11,13 +14,16 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.smartcardio.CardChannel;
+import java.util.List;
 
 /**
  * @Authour YangYang
@@ -28,6 +34,9 @@ import javax.smartcardio.CardChannel;
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    private PermissionService permissionService;
 
     @PostMapping(value = "/login")
     @ResponseBody
@@ -61,18 +70,18 @@ public class LoginController {
     }
 
     @GetMapping(value = "/index")
-    public String loginSuccessMessage(HttpServletRequest request) {
-        String username = "未登录";
+    public String loginSuccessMessage(Model model) {
         UserPo userPo = ShiroUtils.getUser();
 
         if (userPo != null && StringUtils.isNotEmpty(userPo.getName())) {
-            username = userPo.getName();
+            List<Tree<PermissionPo>> menus = permissionService.listPermissionTree(userPo.getId());
+            model.addAttribute("menus", menus);
+            model.addAttribute("name", userPo.getName());
+            return "index";
         } else {
-        return "redirect:/login";
+            return "login";
+        }
     }
-        request.setAttribute("username", username);
-        return "index";
-}
 
     @GetMapping(value = "/logout")
     public String logout() {
@@ -86,4 +95,9 @@ public class LoginController {
         return "kickout";
     }
 
+    // 主界面
+    @GetMapping("/main")
+    String main() {
+        return "main";
+    }
 }

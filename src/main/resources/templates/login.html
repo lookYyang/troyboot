@@ -51,7 +51,7 @@
         </div>
         <div class="signup-footer">
             <div class="pull-left">&copy; 2018 All Rights Reserved.
-                <a href="https://www.jianshu.com/u/e6a66325d869" target="_blank">Design By YangYang</a>
+                <a href="https://www.jianshu.com/u/e6a66325d869" target="_blank">Design By LOokYang</a>
             </div>
         </div>
     </div>
@@ -73,16 +73,8 @@
 <script th:src="@{/js/plugins/layer/layer.min.js}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-//        $("#loginForm").on("click", function(){$("#loginForm").submit();});
         TB.init();
         TB.validate('#loginForm', login, validateRule);
-//        validateRule();
-    });
-
-    $.validator.setDefaults({
-        submitHandler: function () {
-            login();
-        }
     });
 
     function login() {

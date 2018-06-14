@@ -41,6 +41,8 @@ public class PermissionPo implements Serializable {
 
     private String icon;
 
+    private int sort_no;
+
     private int is_enable = Constant.YesOrNo.YES.getValue();
 
     @ManyToMany
