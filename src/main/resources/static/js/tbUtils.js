@@ -34,7 +34,7 @@ var TB = function() {
 					$(mid).addClass('active');
 				}else{
 					//另外的皮肤，如果根据皮肤自定义则也可以在这里处理
-					$(mid).addClass('active menu-active');
+					$(mid).addClass('active permission-active');
 				}
 				
 			}

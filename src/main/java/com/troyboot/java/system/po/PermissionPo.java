@@ -32,7 +32,7 @@ public class PermissionPo implements Serializable {
 
     private String name;
 
-    private String permission;//menu:role.*;button:role:create,role:update
+    private String permission;//permission:role.*;button:role:create,role:update
 
     private String url;
 
@@ -45,10 +45,10 @@ public class PermissionPo implements Serializable {
 
     private int is_enable = Constant.YesOrNo.YES.getValue();
 
-    @ManyToMany
-    @JoinTable(name = "sys_role_permission",
-            joinColumns = {@JoinColumn(name = "permission_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private List<RolePo> rolePos;
+//    @ManyToMany
+//    @JoinTable(name = "sys_role_permission",
+//            joinColumns = {@JoinColumn(name = "permission_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+//    private List<RolePo> rolePos;
 
 }

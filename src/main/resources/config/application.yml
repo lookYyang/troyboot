@@ -21,8 +21,9 @@ spring:
       enabled: true
   cache:
       type: redis
-  jpa:
-    hibernate:
-      # create每次创建，清除数据；update第一次创建，后面的如果字段改变就更新字段
-      ddl-auto: update
-    show-sql: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.troyboot.java.**.po

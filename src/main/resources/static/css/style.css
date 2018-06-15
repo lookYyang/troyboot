@@ -477,7 +477,7 @@ body.body-small.fixed-sidebar.mini-navbar .navbar-static-side {
 .fixed-sidebar.mini-navbar .nav li.active {
     border-left-width: 0;
 }
-/*.fixed-sidebar.mini-navbar .nav li:hover>.nav-second-level, .canvas-menu.mini-navbar .nav li:hover>.nav-second-level*/
+/*.fixed-sidebar.mini-navbar .nav li:hover>.nav-second-level, .canvas-permission.mini-navbar .nav li:hover>.nav-second-level*/
 /*{*/
 /*position: absolute;*/
 /*left: 70px;*/

@@ -72,8 +72,9 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	@Override
-	public List<PermissionPo> list(Map<String, Object> params) {
-		return null;
+	public List<PermissionPo> list() {
+		List<PermissionPo> permissionPos = permissionDao.findAll();
+		return permissionPos;
 	}
 
 	@Override

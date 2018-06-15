@@ -18,7 +18,7 @@ public interface PermissionService {
 
 	Tree<PermissionPo> getTree(Long id);
 
-	List<PermissionPo> list(Map<String, Object> params);
+	List<PermissionPo> list();
 
 	int remove(Long id);
 

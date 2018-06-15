@@ -100,4 +100,10 @@ public class LoginController {
     String main() {
         return "main";
     }
+
+    // REST API接口界面
+    @GetMapping(value = "/swagger")
+    public String index() {
+        return "redirect:swagger-ui.html";
+    }
 }
