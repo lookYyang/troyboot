@@ -1,9 +1,7 @@
 package com.troyboot.java.system.controller;
 
-import com.troyboot.java.common.utils.OutMessage;
-import com.troyboot.java.system.po.PermissionPo;
-import com.troyboot.java.system.po.UserPo;
-import com.troyboot.java.system.service.PermissionService;
+import com.troyboot.java.system.po.SysPermission;
+import com.troyboot.java.system.service.SysPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -13,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Authour YangYang
@@ -29,20 +25,20 @@ public class PermissionController {
     private String prefix = "/system/permission";
 
     @Autowired
-    private PermissionService permissionService;
+    private SysPermissionService permissionService;
 
     @GetMapping("/")
     String perContent() {
         return prefix + "/permission";
     }
 
-    @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = PermissionPo.class, notes = "获取所有权限信息")
+    @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = SysPermission.class, notes = "获取所有权限信息")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
     @RequiresPermissions("sys:permission:permission")
     @GetMapping("/list")
     @ResponseBody
-    List<PermissionPo> list() {
-        List<PermissionPo> permissionPos = permissionService.list();
+    List<SysPermission> list() {
+        List<SysPermission> permissionPos = permissionService.list();
         return permissionPos;
     }
 

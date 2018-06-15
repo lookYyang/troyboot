@@ -2,7 +2,8 @@ package com.troyboot.java.system.security.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.po.UserPo;
+import com.troyboot.java.system.po.SysRole;
+import com.troyboot.java.system.po.SysUser;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
@@ -69,7 +70,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
 
         Session session = subject.getSession();
-        UserPo user = ShiroUtils.getUser();
+        SysUser user = ShiroUtils.getUser();
         String username = user.getName();
         Serializable sessionId = session.getId();
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.troyboot.java.system.dao.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.troyboot.java.system.po.SysRolePermission">
+    <constructor>
+      <arg column="permission_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="role_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.troyboot.java.system.po.SysRolePermission">
+    insert into sys_role_permission (permission_id, role_id)
+    values (#{permissionId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysRolePermission">
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

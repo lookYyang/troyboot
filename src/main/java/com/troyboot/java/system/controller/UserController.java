@@ -2,8 +2,8 @@ package com.troyboot.java.system.controller;
 
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.po.UserPo;
-import com.troyboot.java.system.service.UserService;
+import com.troyboot.java.system.po.SysUser;
+import com.troyboot.java.system.service.SysUserService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,47 +25,16 @@ public class UserController {
 
     private String prefix = "system/user";
 
-    @Autowired
-    private UserService userService;
-
     @RequiresPermissions("sys:user:user")
     @GetMapping("")
     String user(Model model) {
         return prefix + "/userInfo";
     }
 
-    @GetMapping("list")
-    @ApiOperation(value = "查询批量用户信息", httpMethod = "GET", response = UserPo.class, notes = "用户批量查询")
-    public String listUsers(Model model){
-        List<UserPo> userPos = userService.getAllUsers();
-        model.addAttribute("userPos", userPos);
-        return prefix + "/userInfo";
-    }
-
-
-    @GetMapping("/user/{id}")
-    @ApiOperation(value = "通过id查询单个用户信息", httpMethod = "GET", response = UserPo.class, notes = "通过id查询用户")
-    public String detail(@PathVariable int id, Model model){
-        UserPo sysUser = userService.getUserById(id);
-        model.addAttribute("userPos", sysUser);
-        return prefix + "/userInfo";
-    }
-
-    @RequiresPermissions("sys:user:remove")
-    @GetMapping("/remove/{id}")
-    @ApiOperation(value = "通过删除单个用户信息", httpMethod = "GET", response = UserPo.class, notes = "通过id删除用户")
-    OutMessage remove(@PathVariable Long id){
-        if(userService.remove(id) > 0){
-            return OutMessage.ok();
-        }else {
-            return OutMessage.error();
-        }
-    }
-
     @GetMapping("/personal")
-    @ApiOperation(value = "获取当前用户信息", httpMethod = "GET", response = UserPo.class, notes = "获取当前登录用户信息")
+    @ApiOperation(value = "获取当前用户信息", httpMethod = "GET", response = SysUser.class, notes = "获取当前登录用户信息")
     public String personal(Model model){
-        UserPo userPo = ShiroUtils.getUser();
+        SysUser userPo = ShiroUtils.getUser();
         model.addAttribute("personal", userPo);
         // TODO
         // 这个地方先这样显示一下，到时候修改用户的时候，这里返回到修改用户的界面

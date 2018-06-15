@@ -1,6 +1,6 @@
 package com.troyboot.java.common.utils;
 
-import com.troyboot.java.system.po.UserPo;
+import com.troyboot.java.system.po.SysUser;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -14,10 +14,10 @@ public class ShiroUtils{
         return SecurityUtils.getSubject();
     }
 
-    public static UserPo getUser() {
+    public static SysUser getUser() {
         Subject subject = SecurityUtils.getSubject();
         Object object = subject.getPrincipal();
-        UserPo userPo = new UserPo();
+        SysUser userPo = new SysUser();
         try {
             PropertyUtils.copyProperties(userPo,object);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

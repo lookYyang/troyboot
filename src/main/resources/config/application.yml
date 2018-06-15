@@ -24,6 +24,6 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  config-location: classpath:mybatis/mybatis-config.xml
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package: com.troyboot.java.**.po
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.troyboot.java.**.**
+  type-handlers-package: com.troyboot.java

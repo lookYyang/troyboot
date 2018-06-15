@@ -4,9 +4,9 @@ import com.troyboot.java.common.utils.MD5Utils;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.domain.Tree;
-import com.troyboot.java.system.po.PermissionPo;
-import com.troyboot.java.system.po.UserPo;
-import com.troyboot.java.system.service.PermissionService;
+import com.troyboot.java.system.po.SysPermission;
+import com.troyboot.java.system.po.SysUser;
+import com.troyboot.java.system.service.SysPermissionService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.smartcardio.CardChannel;
 import java.util.List;
 
 /**
@@ -36,7 +34,7 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    private PermissionService permissionService;
+    private SysPermissionService permissionService;
 
     @PostMapping(value = "/login")
     @ResponseBody
@@ -71,11 +69,11 @@ public class LoginController {
 
     @GetMapping(value = "/index")
     public String loginSuccessMessage(Model model) {
-        UserPo userPo = ShiroUtils.getUser();
+        SysUser userPo = ShiroUtils.getUser();
 
         if (userPo != null && StringUtils.isNotEmpty(userPo.getName())) {
-            List<Tree<PermissionPo>> menus = permissionService.listPermissionTree(userPo.getId());
-            model.addAttribute("menus", menus);
+            List<Tree<SysPermission>> permission = permissionService.getPermissionByUserId(userPo.getId());
+            model.addAttribute("menus", permission);
             model.addAttribute("name", userPo.getName());
             return "index";
         } else {

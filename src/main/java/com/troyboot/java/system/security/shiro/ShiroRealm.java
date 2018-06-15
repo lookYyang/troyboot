@@ -1,22 +1,20 @@
 package com.troyboot.java.system.security.shiro;
 
-import com.troyboot.java.common.utils.MD5Utils;
 import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.common.Constant;
 import com.troyboot.java.system.config.ApplicationContextRegister;
-import com.troyboot.java.system.po.UserPo;
-import com.troyboot.java.system.service.PermissionService;
-import com.troyboot.java.system.service.RoleService;
-import com.troyboot.java.system.service.UserService;
-import org.apache.shiro.SecurityUtils;
+import com.troyboot.java.system.po.SysUser;
+import com.troyboot.java.system.service.SysPermissionService;
+import com.troyboot.java.system.service.SysUserService;
+import com.troyboot.java.system.service.impl.SysPermissionServiceImpl;
+import com.troyboot.java.system.service.impl.SysRoleServiceImpl;
+import com.troyboot.java.system.service.impl.SysUserServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.util.StringUtils;
 
 /**
  * @Authour YangYang
@@ -33,11 +31,11 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("权限分配");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        PermissionService permissionService = ApplicationContextRegister.getBean(PermissionService.class);
-        RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
+        SysPermissionService permissionService = ApplicationContextRegister.getBean(SysPermissionServiceImpl.class);
+        SysRoleServiceImpl roleService = ApplicationContextRegister.getBean(SysRoleServiceImpl.class);
         Long user_id = ShiroUtils.getUser().getId();
         authorizationInfo.addStringPermissions(permissionService.listPerms(user_id));
-        authorizationInfo.setRoles(roleService.findRolesByUserId(user_id));
+        authorizationInfo.setRoles(roleService.getSysRoleByUserId(user_id));
         return authorizationInfo;
     }
 
@@ -52,9 +50,9 @@ public class ShiroRealm extends AuthorizingRealm {
         String account = (String) token.getPrincipal();
         String password = new String((char[]) token.getCredentials());
 
-        UserService userService = ApplicationContextRegister.getBean(UserService.class);
+        SysUserServiceImpl userService = ApplicationContextRegister.getBean(SysUserServiceImpl.class);
         // 查询用户信息
-        UserPo user = userService.getUserByAccount(account);
+        SysUser user = userService.getUserByAccount(account);
 
         // 账号不存在
         if (user == null) {
