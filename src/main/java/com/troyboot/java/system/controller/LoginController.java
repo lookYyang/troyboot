@@ -61,7 +61,6 @@ public class LoginController {
         }
     }
 
-
     @GetMapping(value = "/login")
     public String loginPage() {
         return "login";
@@ -70,10 +69,9 @@ public class LoginController {
     @GetMapping(value = "/index")
     public String loginSuccessMessage(Model model) {
         SysUser userPo = ShiroUtils.getUser();
-
         if (userPo != null && StringUtils.isNotEmpty(userPo.getName())) {
-            List<Tree<SysPermission>> permission = permissionService.getPermissionByUserId(userPo.getId());
-            model.addAttribute("menus", permission);
+            List<Tree<SysPermission>> perTree = permissionService.getPermissionByUserId(userPo.getId());
+            model.addAttribute("menus", perTree);
             model.addAttribute("name", userPo.getName());
             return "index";
         } else {
