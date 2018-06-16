@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2018/6/15 10:01
  */
 @Configuration(value = "MybatisConfiguration")
+@MapperScan("com.troyboot.java.**.dao")
 public class MybatisConfig {
 
     @Value("${spring.datasource.driver-class-name}")

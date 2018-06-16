@@ -2,7 +2,8 @@ package com.troyboot.java.system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestMapping;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -20,21 +21,26 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.troyboot.java";
-    public static final String VERSION = "0.0.1";
+    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com.troyboot.java";
+    private static final String VERSION = "0.0.1";
 
     @Bean
     public Docket swaggerSpringMvcPlugin() {
-        ApiInfo apiInfo = new ApiInfo(
-                "RESTful API for TroyBoot",
-                "此API提供接口调用",
-                VERSION,
-                null,
-                null,
-                null,
-                null);
-        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE)).paths(regex("/user/.*")).build()
-                .apiInfo(apiInfo).useDefaultResponseMessages(false);
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo(){
+        return new ApiInfoBuilder()
+                .title("RESTful APIs for TroyBoot")
+                .description("展示TroyBoot部分接口")
+                .termsOfServiceUrl("http://blog.didispace.com/")
+                .contact("YangYang")
+                .version(VERSION).build();
     }
 
 }

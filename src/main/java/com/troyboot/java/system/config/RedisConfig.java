@@ -2,13 +2,11 @@ package com.troyboot.java.system.config;
 
 
 import org.apache.log4j.Logger;
-import org.crazycake.shiro.RedisManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 /**
