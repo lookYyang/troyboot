@@ -8,10 +8,10 @@ var load = function () {
             {
                 id: 'id',
                 code: 'id',
-                parentCode: 'parent_id',
+                parentCode: 'parentId',
                 type: "GET", // 请求数据的ajax类型
                 url: prefix + '/list', // 请求数据的ajax的url
-                ajaxParams: {sort:'sort_no'}, // 请求数据的ajax的data属性
+                ajaxParams: {sort:'sortNo'}, // 请求数据的ajax的data属性
                 expandColumn: '1',// 在哪一列上面显示展开按钮
                 striped: true, // 是否各行渐变色
                 bordered: true, // 是否显示边框
@@ -32,7 +32,6 @@ var load = function () {
                         field: 'name',
                         width: '20%'
                     },
-
                     {
                         title: '图标',
                         field: 'icon',
@@ -52,13 +51,13 @@ var load = function () {
                         valign: 'center',
                         width : '10%',
                         formatter: function (item, index) {
-                            if (item.type === 0) {
+                            if (item.type === '0') {
                                 return '<span class="label label-primary">目录</span>';
                             }
-                            if (item.type === 1) {
+                            if (item.type === '1') {
                                 return '<span class="label label-success">菜单</span>';
                             }
-                            if (item.type === 2) {
+                            if (item.type === '2') {
                                 return '<span class="label label-warning">按钮</span>';
                             }
                         }

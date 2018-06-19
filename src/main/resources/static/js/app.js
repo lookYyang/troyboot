@@ -6,7 +6,7 @@
 $(document).ready(function () {
 
     // MetsiMenu
-    $('#side-permission').metisMenu();
+    $('#side-menu').metisMenu();
 
     // 打开右侧边栏
     $('.right-sidebar-toggle').click(function () {
@@ -84,12 +84,12 @@ $(document).ready(function () {
         height: '100%'
     });
 
-    $('#side-permission>li').click(function () {
+    $('#side-menu>li').click(function () {
         if ($('body').hasClass('mini-navbar')) {
             NavToggle();
         }
     });
-    $('#side-permission>li li a').click(function () {
+    $('#side-menu>li li a').click(function () {
         if ($(window).width() < 769) {
             NavToggle();
         }
@@ -117,19 +117,19 @@ function NavToggle() {
 
 function SmoothlyMenu() {
     if (!$('body').hasClass('mini-navbar')) {
-        $('#side-permission').hide();
+        $('#side-menu').hide();
         setTimeout(
             function () {
-                $('#side-permission').fadeIn(500);
+                $('#side-menu').fadeIn(500);
             }, 100);
     } else if ($('body').hasClass('fixed-sidebar')) {
-        $('#side-permission').hide();
+        $('#side-menu').hide();
         setTimeout(
             function () {
-                $('#side-permission').fadeIn(500);
+                $('#side-menu').fadeIn(500);
             }, 300);
     } else {
-        $('#side-permission').removeAttr('style');
+        $('#side-menu').removeAttr('style');
     }
 }
 
