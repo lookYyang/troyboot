@@ -105,14 +105,14 @@ function reLoad() {
     load();
 }
 
-function add(pId) {
+function add(id) {
     layer.open({
         type: 2,
         title: '增加菜单',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/add/' + pId // iframe的url
+        content: prefix + '/add/' + id // iframe的url
     });
 }
 
