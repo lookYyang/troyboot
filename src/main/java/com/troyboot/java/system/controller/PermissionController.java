@@ -2,6 +2,7 @@ package com.troyboot.java.system.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.troyboot.java.common.utils.OutMessage;
+import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.service.SysPermissionService;
 import io.swagger.annotations.Api;
@@ -38,11 +39,12 @@ public class PermissionController {
 
     @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = SysPermission.class, notes = "获取所有权限信息")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ResponseBody
-    List<SysPermission> list() {
+    PageUtils list() {
         List<SysPermission> permissionPos = permissionService.getAll();
-        return permissionPos;
+        PageUtils pageUtil = new PageUtils(permissionPos, permissionPos.size());
+        return pageUtil;
     }
 
     @RequiresPermissions("sys:permission:add")

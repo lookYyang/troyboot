@@ -14,38 +14,64 @@
 						<Tree :data="treeData"></Tree>
 					</div>
 				</div>
-				<div class="col-sm-8 example-demo">
-					<i-button class="ivu-btn" @click="save">新增</i-button>
-					<div class="ivu-table-wrapper">
-						<i-table border highlight-row :loading="loading" size="small" :columns="columns" :data="tableData"></i-table>
+				<div class="col-sm-8">
+					<div class="ibox">
+						<div class="ibox-body table-responsive">
+							<div class="fixed-table-toolbar">
+								<div class="columns pull-left">
+									<button shiro:hasPermission="sys:user:add" type="button"
+											class="btn  btn-primary" onclick="add()">
+										<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
+									</button>
+									<button shiro:hasPermission="sys:user:batchRemove" type="button"
+											class="btn  btn-danger" onclick="batchRemove()">
+										<i class="fa fa-trash hidden" aria-hidden="true"></i>删除
+									</button>
+								</div>
+							</div>
+							<table id="tableId" data-mobile-responsive="true"></table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div th:include="include::footer"></div>
+	<script th:src="@{/js/component/table.js}"></script>
 <script>
     new Vue({
         el: '#content',
+        computed:{
+            // 表格的操作事件
+            tableHandler() {
+                return {
+
+				}
+            }
+		},
 		mounted (){
 			this.init();
+			this.initTable();
 		},
         data: {
-            loading: false,
-            tableData: [
-                {id: 1, name: 'iPhone X', permission: 8300.05, url: 1,type: 1,sort_no: 1,icon : 1,is_enable: 1}
-            ],
             columns: [
-                {type: 'selection', width: 60, align: 'center',fixed: 'left'},
-                {title: '名称', key: 'name',fixed: 'left',align: 'center'},
-                {title: '授权', key: 'permission',align: 'center'},
-                {title: '访问路径', key: 'url',align: 'center'},
-                {title: '节点类型', key: 'type',align: 'center'},
-                {title: '排序号', key: 'sort_no',align: 'center'},
-                {title: '图标', key: 'icon',align: 'center'},
-                {title: '是否启用', key: 'is_enable',align: 'center'}
+                {field: 'selectItem', checkbox: true},
+                {title: 'id', field: 'id', visible: false},
+                {title: 'parent_id', field: 'parentId', visible: false},
+                {title: '名称', field: 'name', align: 'center', valign: 'middle', sortable: false},
+                {title: '授权', field: 'permission', align: 'center', valign: 'middle', sortable: false},
+                {title: '访问路径', field: 'url', align: 'center', valign: 'middle', sortable: false},
+                {title: '节点类型', field: 'type', align: 'center', valign: 'middle', sortable: false},
+                {title: '排序号', field: 'sortNo', align: 'center', valign: 'middle', sortable: true},
+                {title: '图标', field: 'icon', align: 'center', valign: 'middle', sortable: false},
+                {title: '是否启用', field: 'isEnable', align: 'center', valign: 'middle', sortable: false},
+                {title: '操作', align: 'center', valign: 'middle',
+					formatter: function (value, row, index) {
+						return '<span class="label label-primary">待领取</span>';
+				}},
             ],
             treeData: '',
+			tableUrl: '/sys/permission/list',
         },
         methods: {
 			init() {
@@ -62,12 +88,16 @@
                     }
                 ];
 			},
+			initTable(){
+                var table = new BSTable("tableId", this.tableUrl, this.columns);
+                table.init();
+			},
 			save(){
                 this.$Message.success('你点击了新增按钮');
 			},
 			delete(){
                 this.$Message.success('你点击了删除按钮');
-			}
+			},
         }
     })
 </script>
