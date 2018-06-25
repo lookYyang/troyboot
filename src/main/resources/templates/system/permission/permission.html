@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
-	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-<meta charset="utf-8">
-<head th:include="include :: header"></head>
-<body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="col-sm-12">
-			<div class="ibox">
-				<div class="ibox-body">
-					<div id="exampleToolbar" role="group" class="t-bar">
-						<button type="button"
-							class="btn btn-primary" title="在根节点下添加菜单" onclick="add('0')">
-							<i class="fa fa-plus" aria-hidden="true"></i>添加
-						</button>
-						<button type="button"
-							class="btn btn-danger" onclick="batchRemove()">
-							<i class="fa fa-trash" aria-hidden="true"></i>删除
-						</button>
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="include :: header">
+
+</head>
+<body>
+	<div id="content">
+		<div class="ibox-content">
+			<div class="row row-lg">
+				<div class="col-sm-4">
+					<h4 class="example-title">树菜单</h4>
+					<div class="example">
+						<Tree :data="treeData"></Tree>
 					</div>
-					<table id="exampleTable" data-mobile-responsive="true">
-					</table>
+				</div>
+				<div class="col-sm-8 example-demo">
+					<i-button class="ivu-btn" @click="save">新增</i-button>
+					<div class="ivu-table-wrapper">
+						<i-table border highlight-row :loading="loading" size="small" :columns="columns" :data="tableData"></i-table>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--shiro控制bootstraptable行内按钮看见性 -->
-		<div>
-			<script type="text/javascript">
-				var s_add_h = 'hidden';
-				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-			</script>
-		</div>
-		<div>
-			<script type="text/javascript">
-				s_add_h = '';
-			</script>
-		</div>
-		<div>
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div>
-			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-</div>
+	</div>
 	<div th:include="include::footer"></div>
-    <script th:src="@{/js/appjs/sys/permission/permission.js}"></script>
+<script>
+    new Vue({
+        el: '#content',
+		mounted (){
+			this.init();
+		},
+        data: {
+            loading: false,
+            tableData: [
+                {id: 1, name: 'iPhone X', permission: 8300.05, url: 1,type: 1,sort_no: 1,icon : 1,is_enable: 1}
+            ],
+            columns: [
+                {type: 'selection', width: 60, align: 'center',fixed: 'left'},
+                {title: '名称', key: 'name',fixed: 'left',align: 'center'},
+                {title: '授权', key: 'permission',align: 'center'},
+                {title: '访问路径', key: 'url',align: 'center'},
+                {title: '节点类型', key: 'type',align: 'center'},
+                {title: '排序号', key: 'sort_no',align: 'center'},
+                {title: '图标', key: 'icon',align: 'center'},
+                {title: '是否启用', key: 'is_enable',align: 'center'}
+            ],
+            treeData: '',
+        },
+        methods: {
+			init() {
+				this.treeData = [
+                    {title: 'parent 1', expand: true,
+                        children: [
+                            {title: 'parent 1-1', expand: true,
+                                children: [{title: 'leaf 1-1-1'}, {title: 'leaf 1-1-2'}]
+                            },
+                            {title: 'parent 1-2', expand: true,
+                                children: [{title: 'leaf 1-2-1'}, {title: 'leaf 1-2-1'}]
+                            }
+                        ]
+                    }
+                ];
+			},
+			save(){
+                this.$Message.success('你点击了新增按钮');
+			},
+			delete(){
+                this.$Message.success('你点击了删除按钮');
+			}
+        }
+    })
+</script>
 </body>
-
 </html>

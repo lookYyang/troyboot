@@ -64,6 +64,12 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
+    public List<SysPermission> getAll() {
+        List<SysPermission> permissions = sysPermissionDao.getAll();
+        return permissions;
+    }
+
+    @Override
     public Set<String> listPerms(Long userId) {
         List<String> perms = sysPermissionDao.getPersByUserId(userId);
         Set<String> permsSet = new HashSet<>();

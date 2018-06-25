@@ -27,7 +27,7 @@ public class MyControllerAdvice  {
      */
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("author", "Magical Sam");
+        model.addAttribute("author", "Yang");
     }
 
     /**

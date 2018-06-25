@@ -5,6 +5,7 @@ import com.troyboot.java.system.common.Constant;
 import com.troyboot.java.system.config.ApplicationContextRegister;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysPermissionService;
+import com.troyboot.java.system.service.SysRoleService;
 import com.troyboot.java.system.service.SysUserService;
 import com.troyboot.java.system.service.impl.SysPermissionServiceImpl;
 import com.troyboot.java.system.service.impl.SysRoleServiceImpl;
@@ -31,8 +32,8 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("权限分配");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        SysPermissionService permissionService = ApplicationContextRegister.getBean(SysPermissionServiceImpl.class);
-        SysRoleServiceImpl roleService = ApplicationContextRegister.getBean(SysRoleServiceImpl.class);
+        SysPermissionService permissionService = ApplicationContextRegister.getBean(SysPermissionService.class);
+        SysRoleService roleService = ApplicationContextRegister.getBean(SysRoleService.class);
         Long user_id = ShiroUtils.getUser().getId();
         authorizationInfo.addStringPermissions(permissionService.listPerms(user_id));
         authorizationInfo.setRoles(roleService.getSysRoleByUserId(user_id));

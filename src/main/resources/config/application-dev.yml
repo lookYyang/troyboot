@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/troyboot?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/troyboot?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
     username: root
     password: 123456
     ip: 127.0.0.1
@@ -23,6 +23,6 @@ spring:
       enabled: true
 logging:
   level:
-    root: warn
-    com.troyboot.java: info
+    root: infos
+    com.troyboot.java: warn
   file: logs/dev.log

@@ -1,5 +1,6 @@
 package com.troyboot.java.system.service.impl;
 
+import com.troyboot.java.system.service.SysRoleService;
 import com.troyboot.java.system.service.dao.SysRoleDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.Set;
  */
 @Service
 @Transactional(readOnly = true,rollbackFor = Exception.class)
-public class SysRoleServiceImpl {
+public class SysRoleServiceImpl implements SysRoleService {
 
     @Autowired
     private SysRoleDao sysRoleDao;

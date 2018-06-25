@@ -16,6 +16,9 @@ public class ShiroUtils{
 
     public static SysUser getUser() {
         Subject subject = SecurityUtils.getSubject();
+        if(subject.getPrincipal() == null){
+            return null;
+        }
         Object object = subject.getPrincipal();
         SysUser userPo = new SysUser();
         try {

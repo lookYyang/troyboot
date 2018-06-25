@@ -1,20 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
-    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
-    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/iview.css}">
+    <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/iview.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/locale/zh-CN.js}"></script>
 </head>
 <body>
 <div id="app">
-    <Button type="primary">Primary</Button>
+    <Tree id="tree" :data="data1"></Tree>
+    <i-table id="datatable1"
+             size="small"
+             :columns="columns"
+             :data="cartList"
+             stripe
+             highlight-row>
+    </i-table>
 </div>
 <script>
     new Vue({
         el: '#app',
         data: {
-            value: ''
+            cartList: [
+                {id: 1, name: 'iPhone X', price: 8300.05, count: 1},
+                {id: 2, name: 'MacBook Pro', price: 18800.75, count: 3},
+                {id: 3, name: 'Mate 10 Porsche', price: 16600.00, count: 8}
+            ],
+                columns: [
+                {
+                    title: '名称',
+                    key: 'name'
+                },
+                {
+                    title: '单价',
+                    key: 'price'
+                },
+                {
+                    title: '数量',
+                    key: 'count'
+                }
+            ]
         },
         methods: {
 

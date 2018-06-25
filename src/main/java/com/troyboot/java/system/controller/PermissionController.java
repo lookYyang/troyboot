@@ -38,11 +38,10 @@ public class PermissionController {
 
     @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = SysPermission.class, notes = "获取所有权限信息")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
-    @RequiresPermissions("sys:permission:permission")
     @GetMapping("/list")
     @ResponseBody
     List<SysPermission> list() {
-        List<SysPermission> permissionPos = permissionService.list();
+        List<SysPermission> permissionPos = permissionService.getAll();
         return permissionPos;
     }
 

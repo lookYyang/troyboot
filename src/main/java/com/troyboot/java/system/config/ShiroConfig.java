@@ -1,7 +1,10 @@
 package com.troyboot.java.system.config;
 
+import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.security.shiro.ShiroRealm;
+import com.troyboot.java.system.security.shiro.ShiroService;
 import com.troyboot.java.system.security.shiro.filter.KickoutSessionControlFilter;
+import com.troyboot.java.system.service.dao.SysPermissionDao;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -13,12 +16,14 @@ import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,6 +49,8 @@ public class ShiroConfig {
     @Value("${spring.redis.jedis.pool.max-wait}")
     private long maxWaitMillis;
 
+    @Autowired
+    private SysPermissionDao sysPermissionDao;
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -86,8 +93,17 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars*/**", "anon");
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/**", "authc");
 
+        //从数据库获取，动态设置用户的权限，在control方法上，需要添加@RequiresPermissions注释，才能够主动调用doGetAuthorizationInfo方法进行权限验证
+        // 好麻烦，目前先用这个方法，后面可以在thymeleaf模板，通过shiro语法进行判断，如果没有这个权限的，无法点击就行了
+        List<SysPermission> list = sysPermissionDao.list();
+
+        for (SysPermission permission : list) {
+            filterChainDefinitionMap.put(permission.getUrl(),
+                    "perms["+permission.getPermission()+"]");
+        }
+        // 不知道还需不需要这句，先加上
+        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

@@ -22,5 +22,7 @@ public interface SysPermissionService {
 
     List<SysPermission> list();
 
+    List<SysPermission> getAll();
+
     Set<String> listPerms(Long id);
 }

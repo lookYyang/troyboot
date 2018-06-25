@@ -33,5 +33,8 @@ public interface SysPermissionDao {
     List<SysPermission> getPermissionByUserId(Long id);
 
     @Select("select * from sys_permission order by id asc")
+    List<SysPermission> getAll();
+
+    @Select("select * from sys_permission per where per.permission is not null and per.url is not null order by id asc")
     List<SysPermission> list();
 }
