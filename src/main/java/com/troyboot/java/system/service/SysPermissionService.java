@@ -5,6 +5,7 @@ import com.troyboot.java.system.po.SysPermission;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -22,7 +23,7 @@ public interface SysPermissionService {
 
     List<SysPermission> list();
 
-    List<SysPermission> getAll();
+    List<SysPermission> getAll(Map<String, Object> params);
 
     Set<String> listPerms(Long id);
 }

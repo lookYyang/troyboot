@@ -23,6 +23,6 @@ spring:
       enabled: true
 logging:
   level:
-    root: infos
-    com.troyboot.java: warn
+    root: info
+    com.troyboot.java: info
   file: logs/dev.log

@@ -3,7 +3,7 @@ server:
   address: 127.0.0.1
   port: 9264
   servlet:
-    context-path: /api/v1
+    context-path: /api
 spring:
   profiles:
     active: dev
@@ -40,3 +40,6 @@ mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.troyboot.java.**.**
   type-handlers-package: com.troyboot.java
+hengboy:
+  pageable:
+      dialect: mysql

@@ -35,4 +35,6 @@ public class Constant {
      */
     public static final String PWD_SALT = "TR%YY&LYQ";
 
+    public static final int DEAFULT_PAGE_LIMIT = 25;
+
 }

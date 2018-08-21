@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Authour YangYang
@@ -14,6 +15,8 @@ import java.util.List;
 @Repository
 @Mapper
 public interface SysPermissionDao {
+
+    List<SysPermission> getAll(Map<String, Object> parans);
 
     @Select("select per.permission" +
             " from sys_permission per" +
@@ -31,9 +34,6 @@ public interface SysPermissionDao {
             "       and per.type in (0,1)" +
             " order by id desc")
     List<SysPermission> getPermissionByUserId(Long id);
-
-    @Select("select * from sys_permission order by id asc")
-    List<SysPermission> getAll();
 
     @Select("select * from sys_permission per where per.permission is not null and per.url is not null order by id asc")
     List<SysPermission> list();

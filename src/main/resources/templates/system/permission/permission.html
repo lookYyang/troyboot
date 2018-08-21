@@ -19,11 +19,11 @@
 						<div class="ibox-body table-responsive">
 							<div class="fixed-table-toolbar">
 								<div class="columns pull-left">
-									<button shiro:hasPermission="sys:user:add" type="button"
+									<button shiro:hasPermission="sys:permission:add" type="button"
 											class="btn  btn-primary" onclick="add()">
 										<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
 									</button>
-									<button shiro:hasPermission="sys:user:batchRemove" type="button"
+									<button shiro:hasPermission="sys:permission:batchRemove" type="button"
 											class="btn  btn-danger" onclick="batchRemove()">
 										<i class="fa fa-trash hidden" aria-hidden="true"></i>删除
 									</button>
@@ -71,7 +71,7 @@
 				}},
             ],
             treeData: '',
-			tableUrl: '/sys/permission/list',
+			tableUrl: '/sys/permission/permissions',
         },
         methods: {
 			init() {
@@ -92,7 +92,7 @@
                 var table = new BSTable("tableId", this.tableUrl, this.columns);
                 table.init();
 			},
-			save(){
+			add(){
                 this.$Message.success('你点击了新增按钮');
 			},
 			delete(){

@@ -8,5 +8,5 @@
 
 /* 全局常量 */
 var Global = {
-	baseUrl : "/api/v1"
+	baseUrl : "/api"
 }

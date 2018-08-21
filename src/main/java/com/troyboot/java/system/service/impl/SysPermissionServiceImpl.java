@@ -64,8 +64,8 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
-    public List<SysPermission> getAll() {
-        List<SysPermission> permissions = sysPermissionDao.getAll();
+    public List<SysPermission> getAll(Map<String, Object> params) {
+        List<SysPermission> permissions = sysPermissionDao.getAll(params);
         return permissions;
     }
 

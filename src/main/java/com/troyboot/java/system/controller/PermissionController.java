@@ -1,8 +1,6 @@
 package com.troyboot.java.system.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.troyboot.java.common.utils.OutMessage;
-import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.service.SysPermissionService;
 import io.swagger.annotations.Api;
@@ -17,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Authour YangYang
@@ -39,12 +38,11 @@ public class PermissionController {
 
     @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = SysPermission.class, notes = "获取所有权限信息")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
-    @PostMapping("/list")
+    @GetMapping("/list")
     @ResponseBody
-    PageUtils list() {
-        List<SysPermission> permissionPos = permissionService.getAll();
-        PageUtils pageUtil = new PageUtils(permissionPos, permissionPos.size());
-        return pageUtil;
+    List<SysPermission> list(@RequestParam Map<String, Object> params) {
+        List<SysPermission> permissionPos = permissionService.getAll(params);
+        return permissionPos;
     }
 
     @RequiresPermissions("sys:permission:add")
