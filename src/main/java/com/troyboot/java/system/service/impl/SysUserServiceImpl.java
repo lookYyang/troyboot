@@ -39,7 +39,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	public Page<SysUser> selectAllPage(Map<String, Object> params) {
-		Page<SysUser> page = PageableRequest.of(1, 5).request(() -> sysUserDao.selectAll());
+		Page<SysUser> page = PageableRequest.of(1, 5).request(() -> sysUserDao.selectAll(params));
 		return page;
 	}
 

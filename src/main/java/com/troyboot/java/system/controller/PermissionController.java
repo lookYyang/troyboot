@@ -26,7 +26,7 @@ import java.util.Map;
 @Api("权限管理")
 public class PermissionController {
 
-    private String prefix = "/system/permission";
+    private String prefix = "/mapper/system/permission";
 
     @Autowired
     private SysPermissionService permissionService;

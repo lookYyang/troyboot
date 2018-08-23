@@ -3,10 +3,8 @@ package com.troyboot.java.system.controller;
 import com.gitee.hengboy.mybatis.pageable.Page;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysUserService;
-import com.troyboot.java.system.service.dao.SysUserDao;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +27,7 @@ public class UserController {
     @Autowired
     private SysUserService sysUserService;
 
-    private String prefix = "/system/user";
+    private String prefix = "/mapper/system/user";
 
     @RequiresPermissions("sys:user:user")
     @GetMapping("")
@@ -57,7 +54,7 @@ public class UserController {
         return sysUsers;
     }
 
-    @PostMapping("/users")
+    @PostMapping("/add")
     public OutMessage addUser(SysUser sysUser){
         sysUserService.addUser(sysUser);
         return OutMessage.ok();

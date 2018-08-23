@@ -24,5 +24,7 @@ spring:
 logging:
   level:
     root: info
-    com.troyboot.java: info
+    com.troyboot.java: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
   file: logs/dev.log
