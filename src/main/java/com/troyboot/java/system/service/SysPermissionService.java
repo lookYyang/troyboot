@@ -1,5 +1,6 @@
 package com.troyboot.java.system.service;
 
+import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.domain.Tree;
 import com.troyboot.java.system.po.SysPermission;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public interface SysPermissionService {
 
     List<SysPermission> list();
 
-    List<SysPermission> getAll(Map<String, Object> params);
+    PageUtils selectAll(Map<String, Object> params);
 
     Set<String> listPerms(Long id);
 }

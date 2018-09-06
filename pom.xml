@@ -136,10 +136,12 @@
 		</dependency>
 		<!--mybatis分页-->
 		<dependency>
-			<groupId>com.gitee.hengboy</groupId>
-			<artifactId>spring-boot-starter-mybatis-pageable</artifactId>
-			<version>1.0.4.RELEASE</version>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.1.4</version>
 		</dependency>
+        <!-- 热部署 -->
+
     </dependencies>
 
 	<build>
@@ -194,7 +196,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-		</plugins>
+        </plugins>
 	</build>
 
 

@@ -1,13 +1,11 @@
 package com.troyboot.java.system.controller;
 
-import com.gitee.hengboy.mybatis.pageable.Page;
 import com.troyboot.java.common.utils.OutMessage;
+import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysUserService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,13 +43,18 @@ public class UserController {
         return "main";
     }
 
-    @ApiOperation(value = "获取用户信息", httpMethod = "POST",response = SysUser.class, notes = "获取用户信息")
+    @ApiOperation(value = "查询用户", notes = "分页查询用户所有")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "limit", value = "当前页码",
+                    dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name = "size", value = "每页显示条数",
+                    dataType = "Integer", paramType = "query")
+    })
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ResponseBody
-    Page<SysUser> list(@RequestParam Map<String, Object> params) {
-        Page<SysUser> sysUsers = sysUserService.selectAllPage(params);
-        return sysUsers;
+    PageUtils list(@RequestParam Map<String, Object> params) {
+        return sysUserService.selectAllPage(params);
     }
 
     @PostMapping("/add")

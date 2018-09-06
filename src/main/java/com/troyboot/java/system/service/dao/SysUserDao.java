@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Authour YangYang
@@ -19,5 +18,5 @@ public interface SysUserDao {
     @Select("select * from sys_user where account = #{account}")
     SysUser getUserByAccount(String account);
 
-    List<SysUser> selectAll(Map<String, Object> params);
+    List<SysUser> selectAll();
 }

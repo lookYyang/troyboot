@@ -1,8 +1,10 @@
 package com.troyboot.java.system.controller;
 
 import com.troyboot.java.common.utils.OutMessage;
+import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.service.SysPermissionService;
+import com.troyboot.java.system.service.dao.SysPermissionDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -26,10 +28,13 @@ import java.util.Map;
 @Api("权限管理")
 public class PermissionController {
 
-    private String prefix = "/mapper/system/permission";
+    private String prefix = "/system/permission";
 
     @Autowired
     private SysPermissionService permissionService;
+
+    @Autowired
+    private SysPermissionService sysPermissionService;
 
     @GetMapping("/")
     String perContent() {
@@ -40,9 +45,9 @@ public class PermissionController {
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
     @GetMapping("/list")
     @ResponseBody
-    List<SysPermission> list(@RequestParam Map<String, Object> params) {
-        List<SysPermission> permissionPos = permissionService.getAll(params);
-        return permissionPos;
+    PageUtils list(@RequestParam Map<String, Object> params) {
+        PageUtils sysPermissions = sysPermissionService.selectAll(params);
+        return sysPermissions;
     }
 
     @RequiresPermissions("sys:permission:add")

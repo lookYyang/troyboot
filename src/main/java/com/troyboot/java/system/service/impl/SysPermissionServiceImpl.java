@@ -1,6 +1,9 @@
 package com.troyboot.java.system.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.troyboot.java.common.utils.BuildTree;
+import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.dao.SysPermissionMapper;
 import com.troyboot.java.system.domain.Tree;
 import com.troyboot.java.system.po.SysPermission;
@@ -64,9 +67,14 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
-    public List<SysPermission> getAll(Map<String, Object> params) {
-        List<SysPermission> permissions = sysPermissionDao.getAll(params);
-        return permissions;
+    public PageUtils selectAll(Map<String, Object> params) {
+        int limit = "".equals(params.get("limit")) ? 15 : Integer.valueOf(params.get("limit").toString());
+        int offset = "".equals(params.get("offset")) ? 1 : Integer.valueOf(params.get("offset").toString())+1;
+        PageHelper.startPage(offset, limit, true);
+        List<SysPermission> sysPermissions = sysPermissionDao.selectAll();
+        PageInfo<SysPermission> pageInfo = new PageInfo<>(sysPermissions);
+        PageUtils pageUtils = new PageUtils(sysPermissions, pageInfo.getTotal());
+        return pageUtils;
     }
 
     @Override

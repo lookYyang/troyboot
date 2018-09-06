@@ -16,7 +16,7 @@ import java.util.Map;
 @Mapper
 public interface SysPermissionDao {
 
-    List<SysPermission> getAll(Map<String, Object> parans);
+    List<SysPermission> selectAll();
 
     @Select("select per.permission" +
             " from sys_permission per" +

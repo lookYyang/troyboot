@@ -40,6 +40,10 @@ mybatis:
   mapper-locations: classpath:mapper/**/**.xml
   type-aliases-package: com.troyboot.java.system.po
   type-handlers-package: com.troyboot.java
-hengboy:
-  pageable:
-      dialect: mysql
+# 分页插件
+pagehelper:
+  # 可选数据库oracle , mysql , mariadb , sqlite , hsqldb , postgresql , db2 , sqlserver , informix , h2 , sqlserver2012 , derby
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql

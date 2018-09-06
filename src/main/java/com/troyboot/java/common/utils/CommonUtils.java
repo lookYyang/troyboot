@@ -1,6 +1,7 @@
 package com.troyboot.java.common.utils;
 
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * @Authour YangYang
@@ -18,6 +19,25 @@ public class CommonUtils {
             sb.append(str);
         }
         return sb.toString();
+    }
+
+    /**
+     * 返回去除连接符-的UUID
+     *
+     * @return
+     */
+    public String uuid() {
+        String uuid = rawUuid();
+        return uuid.replaceAll("-", "");
+    }
+
+    /**
+     * 返回原生UUID
+     *
+     * @return
+     */
+    public String rawUuid() {
+        return UUID.randomUUID().toString();
     }
 
 }

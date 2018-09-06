@@ -42,7 +42,7 @@
                     sortable: true,             //是否启用排序
                     sortOrder: "desc",          //排序方式
                     pageNumber: 1,                  //初始化加载第一页，默认第一页
-                    pageSize: 1,               //每页的记录行数（*）
+                    pageSize: 15,               //每页的记录行数（*）
                     pageList: [15, 30, 50],    //可供选择的每页的行数（*）
                     queryParamsType: 'limit',   //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
                     queryParams: function (param) {
@@ -140,7 +140,26 @@
             } else {
                 this.btInstance.bootstrapTable('refresh');
             }
-        }
+        },
+
+        /**
+         * 获取当前选中行
+         */
+        getTableRow: function(id){
+            var tableId = this.bstableId;
+            return $('#' + tableId).bootstrapTable('getRowByUniqueId', id);
+        },
+
+        tableSelections: function(){
+            var ids = [];
+            var selRows = this.btInstance.bootstrapTable('getSelections');
+            if (selRows.length > 0) {
+                $.each(selRows, function(){
+                    ids.push(this[id]);
+                });
+            }
+            return ids.join(',');
+        },
     };
 
     window.BSTable = BSTable;
