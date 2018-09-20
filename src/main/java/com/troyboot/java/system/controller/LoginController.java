@@ -7,6 +7,7 @@ import com.troyboot.java.system.domain.Tree;
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysPermissionService;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 
 @Controller
+@Api("用户登录，登出")
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);

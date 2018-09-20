@@ -35,8 +35,8 @@
 			</div>
 		</div>
 
-        <Modal ref="modal" v-model="modal" :rules='ruleValidate' :title="formTitle" @on-ok="ok" @on-cancel="cancel" >
-            <i-form :model="formItem" :label-width="80">
+        <Modal ref="modal" v-model="modal" :rules='ruleValidate' :title="formTitle" @on-ok="submit" @on-cancel="cancel" >
+            <i-form ref="formValidate" :model="formItem" :label-width="80">
                 <form-item label="名称" prop='required'>
                     <i-input v-model="formItem.name" placeholder="请输入名称..."></i-input>
                 </form-item>
@@ -62,10 +62,12 @@
                 </form-item>
             </i-form>
         </Modal>
+
 	</div>
 
 	<div th:include="include::footer"></div>
-	<script th:src="@{/js/component/table.js}"></script>
+
+    <script th:src="@{/js/appjs/sys/permission/permission.js}"></script>
 <script>
     new Vue({
         el: '#content',
@@ -81,24 +83,19 @@
                     {title: '节点类型', field: 'type', align: 'center', valign: 'middle'},
                     {title: '排序号', field: 'sortNo', align: 'center', valign: 'middle', sortable: true},
                     {title: '图标', field: 'icon', align: 'center', valign: 'middle'},
-                    {title: '是否启用', field: 'isEnable', align: 'center', valign: 'middle',
-                        formatter: function (value, row, index) {
-                            return value == 1 ? '<span class="label label-primary">是</span>' : '<span class="label label-primary">否</span>';
-                        }},
-                    {title: '操作', align: 'center', valign: 'middle',
-                        formatter: function (value, row, index) {
-                            return "<button type='button' class='btn  btn-primary' onclick='edit(" + JSON.stringify(row) + ")'>修改</button>";
-                        }},
+                    {title: '是否启用', field: 'isEnable', align: 'center', valign: 'middle', formatter: this.isFormatter},
+                    {title: '操作', align: 'center', valign: 'middle', formatter: this.operateFormatter},
                 ],
                 treeData: '',
                 tableUrl: '/sys/permission/list',
                 modalTitle: '',
                 modal: false,
+                delModal: false,
                 formItem: {
                     name: '',
                     permission: '',
                     url: '',
-                    type: '2',
+                    type: '',
                     sortNo: '',
                     icon: '',
                     isEnable: '',
@@ -122,7 +119,8 @@
                     },
                 ],
                 formTitle: '',
-                table: '',
+                delWarningMsg: '',
+                table: {},
             }
         },
         computed:{
@@ -147,34 +145,65 @@
                     }
                 ];
 			},
-			initTable(){
+            initTable(){
                 this.table = new BSTable("tableId", this.tableUrl, this.columns);
                 this.table.init();
 			},
-			add(){
+			add() {
 			    // TODO
                 // 这里需要重置表单
 			    this.formTitle = '权限新增';
                 this.modal = true;
 			},
-            batchRemove(){
+            batchRemove() {
                 var selRow = this.table.tableSelections();
-                console.log(selRow);
-			},
+                if(!_.isEmpty(selRow)){
+                    var ids = [];
+                    $.each(selRow, function(index, value){
+                        ids.push(value.id);
+                    });
+                    this.delWarningMsg = "确定删除【"+ selRow.length +"】条记录吗？";
+                    this.$Modal.confirm({
+                        title: '删除权限',
+                        content: this.delWarningMsg,
+                        onOk: function(){
+                            this.$Message.success('删除成功！');
+                        },
+                        onCancel: function(){}
+                    });
+                }else {
+                    this.$Message.info({
+                        content: '请选择删除内容',
+                        duration: 2,
+                        closable: true
+                    });
+                }
+            },
             edit(row){
                 this.formTitle = '权限修改';
 			    console.log(row);
+                this.modal = true;
             },
-            ok() {
-                this.$Message.info('Clicked ok');
+            submit() {
+
             },
             cancel() {
-
+			    console.log(this.$refs.formValidate);
+                this.$nextTick(function() {
+                    this.$refs.formValidate.resetFields();
+                });
             },
             change (status) {
                 console.log('开关状态：' + status);
-            }
-        }
+            },
+            isFormatter(value, row, index){
+                return value == 1 ? '<span class="label label-primary">是</span>' : '<span class="label label-primary">否</span>';
+            },
+            operateFormatter(value, row, index) {
+                return "<button type='button' class='btn  btn-primary' onclick='edit(" + row.id + ")'>修改</button>";
+			}
+
+    }
     })
 </script>
 </body>

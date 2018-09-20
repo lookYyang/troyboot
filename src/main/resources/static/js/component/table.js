@@ -146,19 +146,12 @@
          * 获取当前选中行
          */
         getTableRow: function(id){
-            var tableId = this.bstableId;
-            return $('#' + tableId).bootstrapTable('getRowByUniqueId', id);
+            return this.btInstance.bootstrapTable('getRowByUniqueId', id);
         },
 
         tableSelections: function(){
-            var ids = [];
             var selRows = this.btInstance.bootstrapTable('getSelections');
-            if (selRows.length > 0) {
-                $.each(selRows, function(){
-                    ids.push(this[id]);
-                });
-            }
-            return ids.join(',');
+            return selRows;
         },
     };
 

@@ -26,38 +26,42 @@
 	<link th:href="@{/css/iview.css}" rel="stylesheet">
 </head>
 <div th:fragment="footer">
-	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/iview.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/locale/zh-CN.js}"></script>
+    <!--// 基础组件 -->
+   <script th:src="@{/js/jquery.min.js}"></script>
+   <script th:src="@{/js/bootstrap.min.js}"></script>
+   <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+   <script type="text/javascript" th:src="@{/js/iview.min.js}"></script>
+   <script type="text/javascript" th:src="@{/js/locale/zh-CN.js}"></script>
+    <!--// bootstrap组件 -->
+   <script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+   <script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-fixed-columns.js}"></script>
+   <script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}"></script>
+   <script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <!--// 封装bs table组件 -->
+   <script th:src="@{/js/component/table.js}"></script>
+    <!--// 工具包组件 -->
+   <script th:src="@{/js/constant.js}"></script>
+   <script th:src="@{/js/lodash.js}"></script>
+   <script th:src="@{/js/tbUtils.js}"></script>
 
-	<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
-	<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-fixed-columns.js}"></script>
-	<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}"></script>
-	<script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
+    <script th:src="@{/js/plugins/jsTree/jstree.min.js}"></script>
+    <script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.min.js}"></script>
+    <script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.extension.js}"></script>
+    <script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js}"></script>
+    <script th:src="@{/js/plugins/chosen/chosen.jquery.js}"></script>
+    <script th:src="@{/js/plugins/layer/layer.js}"></script>
+    <script th:src="@{/js/content.js?v=1.0.0}"></script>
 
-	<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
-	<script th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
-	<script th:src="@{/js/plugins/jsTree/jstree.min.js}"></script>
-	<script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.min.js}"></script>
-	<script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.extension.js}"></script>
-	<script th:src="@{/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js}"></script>
-	<script th:src="@{/js/plugins/chosen/chosen.jquery.js}"></script>
-	<script th:src="@{/js/constant.js}"></script>
-	<script th:src="@{/js/tbUtils.js}"></script>
-
-	<script th:src="@{/js/plugins/layer/layer.js}"></script>
-	<script th:src="@{/js/content.js?v=1.0.0}"></script>
-
-	<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
-	<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
-	<script th:src="@{/js/plugins/layer/layer.min.js}"></script>
-	<script th:src="@{/js/app.js?v=4.1.0}"></script>
-	<script th:src="@{/js/contabs.js}"></script>
-	<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
-	<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+   <script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+   <script th:src="@{/js/plugins/layer/layer.min.js}"></script>
+   <script th:src="@{/js/app.js?v=4.1.0}"></script>
+   <script th:src="@{/js/contabs.js}"></script>
+   <script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+   <script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
+   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>

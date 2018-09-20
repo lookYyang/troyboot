@@ -1,14 +1,10 @@
 package com.troyboot.java.system.security.shiro;
 
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.common.Constant;
 import com.troyboot.java.system.config.ApplicationContextRegister;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysPermissionService;
 import com.troyboot.java.system.service.SysRoleService;
-import com.troyboot.java.system.service.SysUserService;
-import com.troyboot.java.system.service.impl.SysPermissionServiceImpl;
-import com.troyboot.java.system.service.impl.SysRoleServiceImpl;
 import com.troyboot.java.system.service.impl.SysUserServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -55,22 +51,19 @@ public class ShiroRealm extends AuthorizingRealm {
         // 查询用户信息
         SysUser user = userService.getUserByAccount(account);
 
-        // 账号不存在
+        // 账号不存在1
         if (user == null) {
-            throw new UnknownAccountException("账号或密码不正确");
-        }else if(!password.equals(user.getPassword())){
-            throw new UnknownAccountException("账号或密码不正确");
-        }else {
-            // 账号锁定
-            if (user.getStatus() == 0) {
-                throw new LockedAccountException("账号已被锁定,请联系管理员");
-            }else {
-                // 第一个参数必须是一个实体类对象
-                SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, password, getName());
-                //设置盐，用来核对密码
-                authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(Constant.PWD_SALT));
-                return authenticationInfo;
-            }
+            throw new UnknownAccountException("用户不存在");
         }
+        // 账号锁定
+        if (user.getStatus() == 0) {
+            throw new LockedAccountException("账号已锁定,请联系管理员");
+        }
+        // 使用账号作为盐值
+        ByteSource credentialsSalt = ByteSource.Util.bytes("");
+
+        // 根据用户的情况，来构建AuthenticationInfo对象,通常使用的实现类为SimpleAuthenticationInfo
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
+        return authenticationInfo;
     }
 }

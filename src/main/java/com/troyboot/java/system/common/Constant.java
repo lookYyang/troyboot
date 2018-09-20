@@ -33,8 +33,8 @@ public class Constant {
     /**
      * 缺省的密码加盐
      */
-    public static final String PWD_SALT = "TR%YY&LYQ";
+    public static final String PWD_SALT = "";
 
-    public static final int DEAFULT_PAGE_LIMIT = 25;
+    public static final int DEAFULT_PAGE_LIMIT = 15;
 
 }
