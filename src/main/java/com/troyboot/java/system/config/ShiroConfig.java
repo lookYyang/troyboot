@@ -2,7 +2,6 @@ package com.troyboot.java.system.config;
 
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.security.shiro.ShiroRealm;
-import com.troyboot.java.system.security.shiro.ShiroService;
 import com.troyboot.java.system.security.shiro.filter.KickoutSessionControlFilter;
 import com.troyboot.java.system.service.dao.SysPermissionDao;
 import org.apache.shiro.mgt.SecurityManager;
@@ -51,6 +50,12 @@ public class ShiroConfig {
 
     @Autowired
     private SysPermissionDao sysPermissionDao;
+
+    /**
+     * 定义shiroFilter过滤器并注入securityManager
+     * @param securityManager
+     * @return
+     */
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -108,6 +113,11 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    /**
+     * 定义安全管理器securityManager,注入自定义的realm
+     * @param
+     * @return
+     */
     @Bean
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -120,6 +130,11 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    /**
+     * 自定义的realm，自定义加密方式
+     * @param
+     * @return
+     */
     @Bean
     public ShiroRealm shiroRealm(){
         return new ShiroRealm();

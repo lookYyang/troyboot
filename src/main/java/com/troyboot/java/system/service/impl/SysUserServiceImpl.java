@@ -1,9 +1,7 @@
 package com.troyboot.java.system.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.troyboot.java.common.utils.CommonUtils;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.dao.SysUserMapper;
 import com.troyboot.java.system.po.SysUser;

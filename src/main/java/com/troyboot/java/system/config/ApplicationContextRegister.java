@@ -1,15 +1,15 @@
 package com.troyboot.java.system.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class ApplicationContextRegister implements ApplicationContextAware {
-    private static Logger logger = LoggerFactory.getLogger(ApplicationContextRegister.class);
+
     private static ApplicationContext APPLICATION_CONTEXT;
     /**
      * 设置spring上下文
@@ -17,7 +17,7 @@ public class ApplicationContextRegister implements ApplicationContextAware {
      * @throws BeansException
      * */
     @Override  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        logger.debug("ApplicationContext registed-->{}", applicationContext);
+        log.debug("ApplicationContext registed-->{}", applicationContext);
         APPLICATION_CONTEXT = applicationContext;
     }
 

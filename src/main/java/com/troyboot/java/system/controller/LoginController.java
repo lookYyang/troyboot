@@ -8,13 +8,12 @@ import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysPermissionService;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,34 +30,33 @@ import java.util.List;
 
 @Controller
 @Api("用户登录，登出")
+@Slf4j
 public class LoginController {
-
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private SysPermissionService permissionService;
 
     @PostMapping(value = "/login")
     @ResponseBody
-    OutMessage submitLogin(String account, String password) {
-        password = MD5Utils.encrypt(account, password);
+    OutMessage login(String account, String password) {
+//        password = MD5Utils.encrypt(account, password);
         UsernamePasswordToken token = new UsernamePasswordToken(account, password);
         Subject subject = ShiroUtils.getSubject();
         try {
             //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
             //每个Realm都能在必要时对提交的AuthenticationTokens作出反应
             //所以这一步在调用login(token)方法时,它会走到ShiroRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
-            logger.info("对用户[" + account + "]进行登录验证..验证开始");
+            log.info("对用户[" + account + "]进行登录验证..验证开始");
             subject.login(token);
-            logger.info("对用户[" + account + "]进行登录验证..验证通过");
+            log.info("对用户[" + account + "]进行登录验证..验证通过");
             return OutMessage.ok("登录成功");
         }catch (LockedAccountException le){
-            logger.info(le.getMessage());
+            log.info(le.getMessage());
             return OutMessage.error("账号已被锁定,请联系管理员");
         }
         catch(AuthenticationException ae){
             //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-            logger.info("对用户[" + account + "]进行登录验证..验证未通过,堆栈轨迹如下");
+            log.info("对用户[" + account + "]进行登录验证..验证未通过,堆栈轨迹如下");
             return OutMessage.error("用户名或密码不正确");
         }
     }

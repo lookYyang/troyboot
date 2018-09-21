@@ -31,10 +31,23 @@ public class Constant {
     }
 
     /**
-     * 缺省的密码加盐
+     * 密码加盐
      */
-    public static final String PWD_SALT = "";
+    public static final String PWD_SALT = "doubleY";
 
+    /**
+     * 加密方式
+     */
+    public static final String ALGORITH_NAME = "md5";
+
+    /**
+     * 加密次数
+     */
+    public static final int HASH_ITERATIONS = 2;
+
+    /**
+     * 默认分页：15
+     */
     public static final int DEAFULT_PAGE_LIMIT = 15;
 
 }
