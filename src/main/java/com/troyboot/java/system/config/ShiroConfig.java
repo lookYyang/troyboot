@@ -98,6 +98,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars*/**", "anon");
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/kickot", "anon");
 
         //从数据库获取，动态设置用户的权限，在control方法上，需要添加@RequiresPermissions注释，才能够主动调用doGetAuthorizationInfo方法进行权限验证
         // 好麻烦，目前先用这个方法，后面可以在thymeleaf模板，通过shiro语法进行判断，如果没有这个权限的，无法点击就行了
@@ -108,7 +109,7 @@ public class ShiroConfig {
                     "perms["+permission.getPermission()+"]");
         }
         // 不知道还需不需要这句，先加上
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "kickout,authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

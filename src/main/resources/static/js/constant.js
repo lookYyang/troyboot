@@ -8,5 +8,10 @@
 
 /* 全局常量 */
 var Global = {
-	baseUrl : "/api"
+
+	baseUrl: "/api",
+
+	limit: '15',
+
+    offset: '1'
 }

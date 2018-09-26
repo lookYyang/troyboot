@@ -21,6 +21,7 @@
     select
     <include refid="Base_Column_List" />
     from sys_permission
+    order by sort_no asc
   </select>
 
 </mapper>

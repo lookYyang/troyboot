@@ -88,7 +88,8 @@ public class LoginController {
     //被踢出后跳转的页面
     @GetMapping(value = "/kickout")
     public String kickOut() {
-        return "kickout";
+        ShiroUtils.logout();
+        return "index";
     }
 
     // 主界面
