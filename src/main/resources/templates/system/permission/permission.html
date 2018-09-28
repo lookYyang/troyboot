@@ -16,14 +16,15 @@
 				<div class="col-sm-8">
                     <div class="fixed-table-toolbar">
                         <div class="columns pull-left">
-                            <i-button type="primary" @on-select="add">添加</i-button>
-                            <i-button type="warning" @on-select="batchRemove">删除</i-button>
+                            <i-button type="primary" @click="add">添加</i-button>
+                            <i-button type="warning" @click="batchRemove">删除</i-button>
+                            <button-counter></button-counter>
                         </div>
                     </div>
 					<div class="ibox">
 						<div class="ibox-body table-responsive">
-							<i-table border stripe ref="selection" :columns="columns" :data="tableData" @on-select="onSelect"></i-table>
-                            <Page :total="pageTotal" class="paging"/>
+							<i-table border stripe ref="selection" :columns="columns" :data="tableData" @on-selection-change="selChange"></i-table>
+                            <Page show-total :total="page.pageTotal" class="paging" @on-change="pageChange" @on-page-size-change="sizeChange"/>
 						</div>
 					</div>
 				</div>
@@ -53,7 +54,7 @@
                     <i-input v-model="formItem.icon" placeholder="请选择图标..."></i-input>
                 </form-item>
                 <form-item label="是否启用" prop='required'>
-                    <i-switch v-model="formItem.isEnable" @on-change="change" />
+                    <i-switch v-model="formItem.isEnable"/>
                 </form-item>
             </i-form>
         </Modal>
@@ -74,12 +75,12 @@
             return {
                 columns: [
                     {type: 'selection', align: 'center', width: 60},
-                    {title: '名称', key: 'name'},
-                    {title: '授权', key: 'permission'},
-                    {title: '访问路径', key: 'url'},
+                    {title: '名称', key: 'name', align: 'center'},
+                    {title: '授权', key: 'permission', align: 'center'},
+                    {title: '访问路径', key: 'url', align: 'center'},
                     {title: '节点类型', key: 'type', align: 'center'},
                     {title: '排序号', key: 'sortNo', sortable: true, align: 'center'},
-                    {title: '图标', key: 'icon'},
+                    {title: '图标', key: 'icon', align: 'center'},
                     {title: '是否启用', key: 'isEnable', align: 'center',
                         filters: [
                             {
@@ -112,10 +113,7 @@
                         }
                     },
                     {
-                        title: '操作',
-                        key: 'action',
-                        width: 150,
-                        align: 'center',
+                        title: '操作', key: 'action', width: 100, align: 'center',
                         render: (h, params) => {
                             return h('div', [
                                 h('i-button', {
@@ -128,15 +126,7 @@
                                             this.edit(params.row)
                                         }
                                     }
-                                }, '修改'),
-                                h('i-button', {
-                                    props: {type: 'error', size: 'small'},
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.row.id)
-                                        }
-                                    }
-                                }, '删除')
+                                }, '修改')
                             ]);
                         }
                     }
@@ -145,13 +135,18 @@
                 tableUrl: '/sys/permission/list',
                 tableLoading: true,
                 tableData: [],
-                pageTotal: 1,
+                selrow: [],
+                page:{
+                    isPage: true,
+                    pageTotal: '',
+                    limit: '',
+                    offset: ''
+                },
                 // 树信息
                 treeData: '',
                 // 弹框信息
                 modal: false,
                 modalTitle: '',
-                delModal: false,
                 formItem: {
                     name: '',
                     permission: '',
@@ -167,21 +162,11 @@
                 },
                 // 下拉信息
                 perType:[
-                    {
-                        value: '0',
-                        label: '目录123'
-                    },
-                    {
-                        value: '1',
-                        label: '菜单'
-                    },
-                    {
-                        value: '2',
-                        label: '按钮'
-                    },
+                    {value: '0', label: '目录123'},
+                    {value: '1', label: '菜单'},
+                    {value: '2', label: '按钮'},
                 ],
                 formTitle: '',
-                delWarningMsg: '',
             }
         },
         computed:{
@@ -193,8 +178,7 @@
 		},
         methods: {
             initTree() {
-                var self = this;
-                self.treeData = [
+                this.treeData = [
                     {title: 'parent 1', expand: true,
                         children: [
                             {title: 'parent 1-1', expand: true,
@@ -208,40 +192,39 @@
                 ];
 			},
             initTable(){
-                var self = this;
+                let self = this;
                 self.tableLoading = true;
                 $.ajax({
                     type : 'get',
                     url : Global.baseUrl + '/sys/permission/list',
-                    data: {},
+                    data: {
+                        page: self.page
+                    },
                     page: true,
                     success: function(data) {
-                        if(_.isEqual(data.appcode, 200)){
+                        if(_.isEqual(data.code, 200)){
                             self.tableData = data.rows;
-                            self.pageTotal = data.total;
+                            self.page.pageTotal = data.total;
                             self.tableLoading = false;
                         }
-
                     }
                 });
 			},
-			add() {
-			    // TODO
-                var self = this;
-                self.formTitle = '权限新增';
-                self.modal = true;
+            // 新增按钮
+			add(name) {
+                this.formTitle = '权限新增';
+                this.$refs[name].resetFields();
+                this.modal = true;
 			},
+            // 批量删除按钮
             batchRemove() {
-                var selRow = this.table.tableSelections();
-                if(!_.isEmpty(selRow)){
-                    var ids = [];
-                    $.each(selRow, function(index, value){
-                        ids.push(value.id);
-                    });
-                    this.delWarningMsg = "确定删除【"+ selRow.length +"】条记录吗？";
+                let self = this;
+                console.log(self.selrow);
+                if(!_.isEmpty(self.selrow)){
+                    let delWarningMsg = "确定删除【"+ self.selrow.length +"】条记录吗？";
                     this.$Modal.confirm({
                         title: '删除权限',
-                        content: this.delWarningMsg,
+                        content: delWarningMsg,
                         onOk: function(){
                             this.$Message.success('删除成功！');
                         },
@@ -255,31 +238,33 @@
                     });
                 }
             },
+            // 编辑按钮
+            edit(row){
+                this.formTitle = '权限修改';
+                this.formItem = row;
+                this.modal = true;
+            },
+            selChange(selection){
+                let rowsId = [];
+                _.forEach(selection, function(row) {
+                    rowsId.push(row.id);
+                });
+                this.selrow = rowsId;
+            },
+            pageChange(){
 
+            },
+            sizeChange(){
+
+            },
+            // 表单提交按钮
             submit() {
 
             },
+            // 表单取消按钮
             cancel() {
-                var self = this;
-                self.$nextTick(function() {
-                    self.$refs.formValidate.resetFields();
-                });
+
             },
-            change (status) {
-                console.log('开关状态：' + status);
-            },
-            edit(row){
-                var self = this;
-                self.formTitle = '权限修改';
-                self.formItem = row;
-                self.modal = true;
-            },
-            remove(index){
-                console.log(index);
-            },
-            onSelect(selection, row){
-                console.log(selection, row);
-            }
     }
     })
 </script>

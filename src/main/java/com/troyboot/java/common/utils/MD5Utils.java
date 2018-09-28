@@ -10,6 +10,6 @@ public class MD5Utils {
 	}
 
 	public static void main(String arg[]){
-		System.out.println(MD5Utils.encrypt("admin", "123456"));
+		System.out.println(MD5Utils.encrypt("test", "123456"));
 	}
 }

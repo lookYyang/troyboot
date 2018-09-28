@@ -17,5 +17,5 @@ public interface SysUserService {
 
     void addUser(SysUser sysUser);
 
-    PageUtils selectAllPage(Map<String, Object> params);
+    PageUtils list(Map<String, Object> params);
 }

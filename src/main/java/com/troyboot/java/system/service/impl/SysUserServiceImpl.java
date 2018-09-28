@@ -40,11 +40,14 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
     @Override
-	public PageUtils selectAllPage(Map<String, Object> params) {
+	public PageUtils list(Map<String, Object> params) {
 	    int limit = params.get("limit") == "" ? 1 : Integer.valueOf(params.get("limit").toString());
-        int size = params.get("size") == "" ? 10 : Integer.valueOf(params.get("size").toString());
+        int size = params.get("offset") == "" ? 15 : Integer.valueOf(params.get("offset").toString());
         PageHelper.startPage(limit, size, true);
         List<SysUser> sysUsers = sysUserDao.selectAll();
+        for(SysUser user : sysUsers){
+			user.setPassword("");
+		}
         PageInfo<SysUser> pageInfo = new PageInfo<>(sysUsers);
         PageUtils pageUtils = new PageUtils(sysUsers, pageInfo.getTotal());
 		return pageUtils;

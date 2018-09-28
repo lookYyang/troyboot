@@ -4,7 +4,6 @@ import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.service.SysPermissionService;
-import com.troyboot.java.system.service.dao.SysPermissionDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +34,7 @@ public class PermissionController {
     @Autowired
     private SysPermissionService sysPermissionService;
 
-    @GetMapping("/")
+    @GetMapping("")
     String perContent() {
         return prefix + "/permission";
     }

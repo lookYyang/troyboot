@@ -16,12 +16,6 @@
             }
         }
 
-        // 判断是否分页
-        if (options.page) {
-            options.data.limit = 15;
-            options.data.offset = 1;
-        }
-
         // 判断参数中是否有beforeSend回调函数
         if (options.beforeSend) {
             callback.beforeSend = options.beforeSend;
@@ -68,7 +62,6 @@
                 callback.complete(XHR, TS);
             }
         });
-
         // 返回重写的ajax
         return _ajax(_opt);
     };

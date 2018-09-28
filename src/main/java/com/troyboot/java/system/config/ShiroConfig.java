@@ -2,9 +2,12 @@ package com.troyboot.java.system.config;
 
 import com.troyboot.java.system.po.SysPermission;
 import com.troyboot.java.system.security.shiro.ShiroRealm;
+import com.troyboot.java.system.security.shiro.ShiroSessionListener;
 import com.troyboot.java.system.security.shiro.filter.KickoutSessionControlFilter;
 import com.troyboot.java.system.service.dao.SysPermissionDao;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -21,9 +24,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Authour YangYang
@@ -108,7 +109,7 @@ public class ShiroConfig {
             filterChainDefinitionMap.put(permission.getUrl(),
                     "perms["+permission.getPermission()+"]");
         }
-        // 不知道还需不需要这句，先加上
+        // 限制同一帐号同时在线的个数kickout
         filterChainDefinitionMap.put("/**", "kickout,authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
@@ -186,6 +187,9 @@ public class ShiroConfig {
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(redisSessionDAO());
+        Collection<SessionListener> listeners = new ArrayList<>();
+        listeners.add(new ShiroSessionListener());
+        sessionManager.setSessionListeners(listeners);
         return sessionManager;
     }
 

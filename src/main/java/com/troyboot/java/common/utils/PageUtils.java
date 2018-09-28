@@ -1,42 +1,21 @@
 package com.troyboot.java.common.utils;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Data
 public class  PageUtils implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long total;
     private List<?> rows;
-    private int appcode;
+    private int code;
 
     public PageUtils(List<?> list, Long total) {
         this.rows = list;
         this.total = total;
-        this.appcode = 200;
-    }
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
-    public List<?> getRows() {
-        return rows;
-    }
-
-    public void setRows(List<?> rows) {
-        this.rows = rows;
-    }
-
-    public int getAppcode() {
-        return appcode;
-    }
-
-    public void setAppcode(int appcode) {
-        this.appcode = appcode;
+        this.code = 200;
     }
 
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head th:include="include :: header">
+</head>
+<body>
+	<div id="content">
+		<div class="ibox-content">
+			<div class="row row-lg">
+				<div class="col-sm-12">
+					<div class="ibox">
+						<div class="ibox-body table-responsive">
+							<i-table border stripe ref="tableRef" :columns="columns" :data="tableData"></i-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:include="include::footer"></div>
+<script>
+    new Vue({
+        el: '#content',
+        data() {
+            return {
+                columns: [
+                    {title: '用户名', key: 'username', align: 'center'},
+                    {title: '登录时间', key: 'startTimestamp', align: 'center'},
+                    {title: '最后访问时间', key: 'lastAccessTime', align: 'center'},
+                    {title: '主机地址', key: 'host', align: 'center'},
+                    {title: '状态', key: 'status', align: 'center'},
+                    {
+                        title: '操作', key: 'action', width: 100, align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('i-button', {
+                                    props: {type: 'primary', size: 'small'},
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.forceLogout(params.row)
+                                        }
+                                    }
+                                }, '下线')
+                            ]);
+                        }
+                    }
+                ],
+                // 表格信息
+                tableUrl: '/sys/online/list',
+                forceLogoutUrl: '/sys/online/forceLogout',
+                tableData: [],
+                tableLoading: false,
+            }
+        },
+        computed:{
+
+		},
+		mounted (){
+			this.initTable();
+		},
+        methods: {
+            initTable(){
+                let self = this;
+                self.tableLoading = true;
+                $.ajax({
+                    type : 'get',
+                    url : Global.baseUrl + self.tableUrl,
+                    success: function(data) {
+                        if(_.isEqual(data.code, 200)){
+                            self.tableData = data.rows;
+                            self.tableLoading = false;
+                        }
+                    }
+                });
+			},
+            // 强迫下线
+            forceLogout(row){
+                let self = this;
+                $.ajax({
+                    type : 'post',
+                    data: {
+                        id: row.id
+                    },
+                    url : Global.baseUrl + self.forceLogoutUrl,
+                    success: function(data) {
+                        self.$Message.info(data.msg);
+                    }
+                });
+            }
+    }
+    })
+</script>
+</body>
+</html>

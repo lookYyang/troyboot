@@ -20,17 +20,17 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/sys/user")
+@Api("用户管理")
 public class UserController {
 
     @Autowired
     private SysUserService sysUserService;
 
-    private String prefix = "/mapper/system/user";
+    private String prefix = "/system/user";
 
-    @RequiresPermissions("sys:user:user")
     @GetMapping("")
-    String user(Model model) {
-        return prefix + "/userInfo";
+    String user() {
+        return prefix + "/user";
     }
 
     @GetMapping("/personal")
@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping("/list")
     @ResponseBody
     PageUtils list(@RequestParam Map<String, Object> params) {
-        return sysUserService.selectAllPage(params);
+        return sysUserService.list(params);
     }
 
     @PostMapping("/add")

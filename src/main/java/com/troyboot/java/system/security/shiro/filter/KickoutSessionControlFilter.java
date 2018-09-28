@@ -1,8 +1,8 @@
 package com.troyboot.java.system.security.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.po.SysRole;
 import com.troyboot.java.system.po.SysUser;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
@@ -16,7 +16,6 @@ import org.apache.shiro.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.Deque;
@@ -103,9 +102,6 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
                 //踢出后再更新下缓存队列
                 cache.put(username, deque);
             }
-
-
-
             try {
                 //获取被踢出的sessionId的session对象
                 Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
@@ -130,10 +126,8 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             Map<String, String> resultMap = new HashMap<String, String>();
             //判断是不是Ajax请求
             if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {
-                resultMap.put("user_status", "300");
-                resultMap.put("message", "该账号已经在其他地方登录，请重新登录！");
                 //输出json串
-                out(response, resultMap);
+                out(response, OutMessage.error(300, "该账号已经在其他地方登录，请重新登录！"));
             }else{
                 //重定向
                 WebUtils.issueRedirect(request, response, kickoutUrl);
@@ -142,12 +136,11 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
         return true;
     }
-    private void out(ServletResponse hresponse, Map<String, String> resultMap)
-            throws IOException {
+    private void out(ServletResponse hresponse, OutMessage outMessage) {
         try {
             hresponse.setCharacterEncoding("UTF-8");
             PrintWriter out = hresponse.getWriter();
-            out.println(JSON.toJSONString(resultMap));
+            out.println(JSON.toJSONString(outMessage));
             out.flush();
             out.close();
         } catch (Exception e) {
