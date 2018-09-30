@@ -1,6 +1,7 @@
 package com.troyboot.java.system.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysUser implements Serializable {
     private Long id;
@@ -11,19 +12,28 @@ public class SysUser implements Serializable {
 
     private String password;
 
+    private Integer orgId;
+
     private Integer isDelete;
 
     private Integer status;
 
+    private String createBy;
+
+    private Date createTime;
+
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Long id, String name, String account, String password, Integer isDelete, Integer status) {
+    public SysUser(Long id, String name, String account, String password, Integer orgId, Integer isDelete, Integer status, String createBy, Date createTime) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.password = password;
+        this.orgId = orgId;
         this.isDelete = isDelete;
         this.status = status;
+        this.createBy = createBy;
+        this.createTime = createTime;
     }
 
     public SysUser() {
@@ -62,6 +72,14 @@ public class SysUser implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
+    public Integer getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(Integer orgId) {
+        this.orgId = orgId;
+    }
+
     public Integer getIsDelete() {
         return isDelete;
     }
@@ -76,6 +94,22 @@ public class SysUser implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy == null ? null : createBy.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -94,8 +128,11 @@ public class SysUser implements Serializable {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getAccount() == null ? other.getAccount() == null : this.getAccount().equals(other.getAccount()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+            && (this.getOrgId() == null ? other.getOrgId() == null : this.getOrgId().equals(other.getOrgId()))
             && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
     }
 
     @Override
@@ -106,8 +143,11 @@ public class SysUser implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getAccount() == null) ? 0 : getAccount().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getOrgId() == null) ? 0 : getOrgId().hashCode());
         result = prime * result + ((getIsDelete() == null) ? 0 : getIsDelete().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getCreateBy() == null) ? 0 : getCreateBy().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return result;
     }
 }

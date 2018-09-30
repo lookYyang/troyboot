@@ -22,9 +22,9 @@ public interface SysPermissionService {
 
     List<SysPermission> getPermissionByRoleId(Long id);
 
-    List<SysPermission> list();
+    PageUtils list(Map<String, Object> params);
 
-    PageUtils selectAll(Map<String, Object> params);
+    List<SysPermission> selectAll();
 
     Set<String> listPerms(Long id);
 }

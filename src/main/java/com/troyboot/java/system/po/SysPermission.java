@@ -1,6 +1,7 @@
 package com.troyboot.java.system.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysPermission implements Serializable {
     private Long id;
@@ -13,26 +14,32 @@ public class SysPermission implements Serializable {
 
     private String url;
 
+    private String icon;
+
     private String type;
 
     private Integer sortNo;
 
-    private String icon;
-
     private Integer isEnable;
+
+    private String createBy;
+
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
-    public SysPermission(Long id, Long parentId, String name, String permission, String url, String type, Integer sortNo, String icon, Integer isEnable) {
+    public SysPermission(Long id, Long parentId, String name, String permission, String url, String icon, String type, Integer sortNo, Integer isEnable, String createBy, Date createTime) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.permission = permission;
         this.url = url;
+        this.icon = icon;
         this.type = type;
         this.sortNo = sortNo;
-        this.icon = icon;
         this.isEnable = isEnable;
+        this.createBy = createBy;
+        this.createTime = createTime;
     }
 
     public SysPermission() {
@@ -79,6 +86,14 @@ public class SysPermission implements Serializable {
         this.url = url == null ? null : url.trim();
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
     public String getType() {
         return type;
     }
@@ -95,20 +110,28 @@ public class SysPermission implements Serializable {
         this.sortNo = sortNo;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
-    }
-
     public Integer getIsEnable() {
         return isEnable;
     }
 
     public void setIsEnable(Integer isEnable) {
         this.isEnable = isEnable;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy == null ? null : createBy.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -128,10 +151,12 @@ public class SysPermission implements Serializable {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPermission() == null ? other.getPermission() == null : this.getPermission().equals(other.getPermission()))
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
+            && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getSortNo() == null ? other.getSortNo() == null : this.getSortNo().equals(other.getSortNo()))
-            && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
-            && (this.getIsEnable() == null ? other.getIsEnable() == null : this.getIsEnable().equals(other.getIsEnable()));
+            && (this.getIsEnable() == null ? other.getIsEnable() == null : this.getIsEnable().equals(other.getIsEnable()))
+            && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
     }
 
     @Override
@@ -143,10 +168,12 @@ public class SysPermission implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPermission() == null) ? 0 : getPermission().hashCode());
         result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
+        result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getSortNo() == null) ? 0 : getSortNo().hashCode());
-        result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
         result = prime * result + ((getIsEnable() == null) ? 0 : getIsEnable().hashCode());
+        result = prime * result + ((getCreateBy() == null) ? 0 : getCreateBy().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return result;
     }
 }

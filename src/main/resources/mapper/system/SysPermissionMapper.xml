@@ -8,14 +8,17 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sort_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_enable" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, parent_id, name, permission, url, type, sort_no, icon, is_enable
+    id, parent_id, name, permission, url, icon, type, sort_no, is_enable, create_by, 
+    create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -29,13 +32,13 @@
   </delete>
   <insert id="insert" parameterType="com.troyboot.java.system.po.SysPermission">
     insert into sys_permission (id, parent_id, name, 
-      permission, url, type, 
-      sort_no, icon, is_enable
-      )
+      permission, url, icon, 
+      type, sort_no, is_enable, 
+      create_by, create_time)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{permission,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{sortNo,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{isEnable,jdbcType=INTEGER}
-      )
+      #{permission,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{isEnable,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysPermission">
     insert into sys_permission
@@ -55,17 +58,23 @@
       <if test="url != null">
         url,
       </if>
+      <if test="icon != null">
+        icon,
+      </if>
       <if test="type != null">
         type,
       </if>
       <if test="sortNo != null">
         sort_no,
       </if>
-      <if test="icon != null">
-        icon,
-      </if>
       <if test="isEnable != null">
         is_enable,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -84,17 +93,23 @@
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
       </if>
       <if test="sortNo != null">
         #{sortNo,jdbcType=INTEGER},
       </if>
-      <if test="icon != null">
-        #{icon,jdbcType=VARCHAR},
-      </if>
       <if test="isEnable != null">
         #{isEnable,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -113,17 +128,23 @@
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
       </if>
       <if test="sortNo != null">
         sort_no = #{sortNo,jdbcType=INTEGER},
       </if>
-      <if test="icon != null">
-        icon = #{icon,jdbcType=VARCHAR},
-      </if>
       <if test="isEnable != null">
         is_enable = #{isEnable,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -134,10 +155,12 @@
       name = #{name,jdbcType=VARCHAR},
       permission = #{permission,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       sort_no = #{sortNo,jdbcType=INTEGER},
-      icon = #{icon,jdbcType=VARCHAR},
-      is_enable = #{isEnable,jdbcType=INTEGER}
+      is_enable = #{isEnable,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

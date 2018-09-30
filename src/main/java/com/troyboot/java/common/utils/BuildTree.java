@@ -24,10 +24,8 @@ public class BuildTree {
 			String pid = children.getParentId();
 			if (pid == null || "0".equals(pid)) {
 				topNodes.add(children);
-
 				continue;
 			}
-
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
 				if (id != null && id.equals(pid)) {
@@ -37,9 +35,7 @@ public class BuildTree {
 					continue;
 				}
 			}
-
 		}
-
 		Tree<T> root = new Tree<T>();
 		if (topNodes.size() == 1) {
 			root = topNodes.get(0);
@@ -55,7 +51,6 @@ public class BuildTree {
 			state.put("opened", true);
 			root.setState(state);
 		}
-
 		return root;
 	}
 
@@ -64,27 +59,21 @@ public class BuildTree {
 			return null;
 		}
 		List<Tree<T>> topNodes = new ArrayList<Tree<T>>();
-
 		for (Tree<T> children : nodes) {
-
 			String pid = children.getParentId();
 			if (pid == null || idParam.equals(pid)) {
 				topNodes.add(children);
-
 				continue;
 			}
-
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
 				if (id != null && id.equals(pid)) {
 					parent.getChildren().add(children);
 					children.setHasParent(true);
 					parent.setHasChildren(true);
-
 					continue;
 				}
 			}
-
 		}
 		return topNodes;
 	}

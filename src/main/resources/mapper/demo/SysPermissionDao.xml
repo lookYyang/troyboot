@@ -8,14 +8,17 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sort_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_enable" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, parent_id, name, permission, url, type, sort_no, icon, is_enable
+    id, parent_id, name, permission, url, icon, type, sort_no, is_enable, create_by,
+    create_time
   </sql>
   <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
     select

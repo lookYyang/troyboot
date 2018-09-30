@@ -61,20 +61,20 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
-    public List<SysPermission> list() {
-        List<SysPermission> permissions = sysPermissionDao.list();
-        return permissions;
-    }
-
-    @Override
-    public PageUtils selectAll(Map<String, Object> params) {
-        int limit = "".equals(params.get("limit")) ? 15 : Integer.valueOf(params.get("limit").toString());
-        int offset = "".equals(params.get("offset")) ? 1 : Integer.valueOf(params.get("offset").toString())+1;
-        PageHelper.startPage(offset, limit, true);
+    public PageUtils list(Map<String, Object> params) {
+        int limit = "".equals(params.get("limit")) ? 1 : Integer.valueOf(params.get("limit").toString());
+        int offset = "".equals(params.get("offset")) ? 15 : Integer.valueOf(params.get("offset").toString());
+        PageHelper.startPage(limit, offset, true);
         List<SysPermission> sysPermissions = sysPermissionDao.selectAll();
         PageInfo<SysPermission> pageInfo = new PageInfo<>(sysPermissions);
         PageUtils pageUtils = new PageUtils(sysPermissions, pageInfo.getTotal());
         return pageUtils;
+    }
+
+    @Override
+    public List<SysPermission> selectAll() {
+        List<SysPermission> permissionList = sysPermissionDao.list();
+        return permissionList;
     }
 
     @Override

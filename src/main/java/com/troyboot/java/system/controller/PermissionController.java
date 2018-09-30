@@ -41,10 +41,10 @@ public class PermissionController {
 
     @ApiOperation(value = "获取所有权限信息", httpMethod = "GET",response = SysPermission.class, notes = "获取所有权限信息")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ResponseBody
     PageUtils list(@RequestParam Map<String, Object> params) {
-        PageUtils sysPermissions = sysPermissionService.selectAll(params);
+        PageUtils sysPermissions = sysPermissionService.list(params);
         return sysPermissions;
     }
 
@@ -52,7 +52,7 @@ public class PermissionController {
     @GetMapping("/add/{id}")
     String add(@PathVariable("id") Long id, Model model){
         SysPermission sysPermission = permissionService.getPermissionById(id);
-        if(StringUtils.isBlank(sysPermission.getId().toString())){
+        if(StringUtils.isEmpty(sysPermission.getId().toString())){
             model.addAttribute("per", "");
         }else {
             model.addAttribute("per", sysPermission);

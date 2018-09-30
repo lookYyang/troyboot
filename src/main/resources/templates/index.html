@@ -57,8 +57,7 @@
                 <li th:each="menu : ${menus}">
                     <a href="#">
                         <i class="fa fa fa-bar-chart-o" th:class="${menu.attributes.icon}"></i>
-                        <span class="nav-label" th:text="${menu.text}"></span> <span
-                            class="fa arrow"></span>
+                        <span class="nav-label" th:text="${menu.text}"></span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li th:each="cmenu : ${menu.children}">

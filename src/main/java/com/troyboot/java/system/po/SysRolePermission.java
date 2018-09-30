@@ -3,19 +3,30 @@ package com.troyboot.java.system.po;
 import java.io.Serializable;
 
 public class SysRolePermission implements Serializable {
+    private Integer id;
+
     private Long permissionId;
 
     private Long roleId;
 
     private static final long serialVersionUID = 1L;
 
-    public SysRolePermission(Long permissionId, Long roleId) {
+    public SysRolePermission(Integer id, Long permissionId, Long roleId) {
+        this.id = id;
         this.permissionId = permissionId;
         this.roleId = roleId;
     }
 
     public SysRolePermission() {
         super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Long getPermissionId() {
@@ -46,7 +57,8 @@ public class SysRolePermission implements Serializable {
             return false;
         }
         SysRolePermission other = (SysRolePermission) that;
-        return (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
             && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()));
     }
 
@@ -54,6 +66,7 @@ public class SysRolePermission implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
         return result;
