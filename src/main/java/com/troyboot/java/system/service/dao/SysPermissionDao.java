@@ -24,7 +24,7 @@ public interface SysPermissionDao {
             " left join sys_user_role ur on ur.role_id = rp.role_id" +
             " where ur.user_id = #{id}" +
             " and per.permission is not null")
-    List<String> getPersByUserId(Long id);
+    List<String> getPersByUserId(int id);
 
     @Select("select per.*" +
             " from sys_permission per" +
@@ -33,7 +33,7 @@ public interface SysPermissionDao {
             " where ur.user_id = #{id}" +
             "       and per.type in (0,1)" +
             " order by id desc")
-    List<SysPermission> getPermissionByUserId(Long id);
+    List<SysPermission> getPermissionByUserId(int id);
 
     @Select("select * from sys_permission per where per.permission is not null and per.url is not null order by id asc")
     List<SysPermission> list();

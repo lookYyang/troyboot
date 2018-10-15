@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysUser implements Serializable {
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Long id, String name, String account, String password, Integer orgId, Integer isDelete, Integer status, String createBy, Date createTime) {
+    public SysUser(Integer id, String name, String account, String password, Integer orgId, Integer isDelete, Integer status, String createBy, Date createTime) {
         this.id = id;
         this.name = name;
         this.account = account;
@@ -40,11 +40,11 @@ public class SysUser implements Serializable {
         super();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

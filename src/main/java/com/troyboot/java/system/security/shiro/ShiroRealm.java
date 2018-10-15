@@ -45,7 +45,7 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         SysPermissionService permissionService = ApplicationContextRegister.getBean(SysPermissionService.class);
         SysRoleService roleService = ApplicationContextRegister.getBean(SysRoleService.class);
-        Long user_id = ShiroUtils.getUser().getId();
+        int user_id = ShiroUtils.getUser().getId();
         authorizationInfo.addStringPermissions(permissionService.listPerms(user_id));
         authorizationInfo.setRoles(roleService.getSysRoleByUserId(user_id));
         return authorizationInfo;

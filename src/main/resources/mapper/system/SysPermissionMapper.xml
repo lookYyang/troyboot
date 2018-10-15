@@ -3,8 +3,8 @@
 <mapper namespace="com.troyboot.java.system.dao.SysPermissionMapper">
   <resultMap id="BaseResultMap" type="com.troyboot.java.system.po.SysPermission">
     <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="parent_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -20,22 +20,22 @@
     id, parent_id, name, permission, url, icon, type, sort_no, is_enable, create_by, 
     create_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_permission
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_permission
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.troyboot.java.system.po.SysPermission">
     insert into sys_permission (id, parent_id, name, 
       permission, url, icon, 
       type, sort_no, is_enable, 
       create_by, create_time)
-    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{permission,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{isEnable,jdbcType=INTEGER}, 
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
@@ -79,10 +79,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="parentId != null">
-        #{parentId,jdbcType=BIGINT},
+        #{parentId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
     update sys_permission
     <set>
       <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=BIGINT},
+        parent_id = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -147,11 +147,11 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.troyboot.java.system.po.SysPermission">
     update sys_permission
-    set parent_id = #{parentId,jdbcType=BIGINT},
+    set parent_id = #{parentId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       permission = #{permission,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
@@ -161,6 +161,6 @@
       is_enable = #{isEnable,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

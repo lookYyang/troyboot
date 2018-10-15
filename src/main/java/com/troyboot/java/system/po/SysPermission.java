@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysPermission implements Serializable {
-    private Long id;
+    private Integer id;
 
-    private Long parentId;
+    private Integer parentId;
 
     private String name;
 
@@ -28,7 +28,7 @@ public class SysPermission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysPermission(Long id, Long parentId, String name, String permission, String url, String icon, String type, Integer sortNo, Integer isEnable, String createBy, Date createTime) {
+    public SysPermission(Integer id, Integer parentId, String name, String permission, String url, String icon, String type, Integer sortNo, Integer isEnable, String createBy, Date createTime) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -46,19 +46,19 @@ public class SysPermission implements Serializable {
         super();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 

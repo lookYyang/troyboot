@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class SysRolePermission implements Serializable {
     private Integer id;
 
-    private Long permissionId;
+    private Integer permissionId;
 
-    private Long roleId;
+    private Integer roleId;
 
     private static final long serialVersionUID = 1L;
 
-    public SysRolePermission(Integer id, Long permissionId, Long roleId) {
+    public SysRolePermission(Integer id, Integer permissionId, Integer roleId) {
         this.id = id;
         this.permissionId = permissionId;
         this.roleId = roleId;
@@ -29,19 +29,19 @@ public class SysRolePermission implements Serializable {
         this.id = id;
     }
 
-    public Long getPermissionId() {
+    public Integer getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(Long permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

@@ -24,7 +24,7 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysUserDao sysUserDao;
 
 	@Override
-	public SysUser getUserById(Long id) {
+	public SysUser getUserById(int id) {
 		return sysUserMapper.selectByPrimaryKey(id);
 	}
 

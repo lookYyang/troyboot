@@ -3,10 +3,10 @@ package com.troyboot.java.system.controller;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.common.utils.ShiroUtils;
+import com.troyboot.java.system.common.annotation.Log;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysUserService;
 import io.swagger.annotations.*;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +58,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
+    @Log("添加用户")
     public OutMessage addUser(SysUser sysUser){
         sysUserService.addUser(sysUser);
         return OutMessage.ok();

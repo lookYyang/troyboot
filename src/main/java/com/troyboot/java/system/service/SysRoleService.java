@@ -11,6 +11,6 @@ import java.util.Set;
 @Service
 public interface SysRoleService {
 
-    public Set<String> getSysRoleByUserId(Long id);
+    public Set<String> getSysRoleByUserId(int id);
 
 }

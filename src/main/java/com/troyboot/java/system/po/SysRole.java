@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysRole implements Serializable {
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -20,7 +20,7 @@ public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysRole(Long id, String name, Integer isEnable, Integer sortNo, String description, String createBy, Date createTime) {
+    public SysRole(Integer id, String name, Integer isEnable, Integer sortNo, String description, String createBy, Date createTime) {
         this.id = id;
         this.name = name;
         this.isEnable = isEnable;
@@ -34,11 +34,11 @@ public class SysRole implements Serializable {
         super();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

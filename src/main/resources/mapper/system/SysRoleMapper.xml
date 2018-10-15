@@ -3,7 +3,7 @@
 <mapper namespace="com.troyboot.java.system.dao.SysRoleMapper">
   <resultMap id="BaseResultMap" type="com.troyboot.java.system.po.SysRole">
     <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_enable" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="sort_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -15,21 +15,21 @@
   <sql id="Base_Column_List">
     id, name, is_enable, sort_no, description, create_by, create_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_role
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_role
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.troyboot.java.system.po.SysRole">
     insert into sys_role (id, name, is_enable, 
       sort_no, description, create_by, 
       create_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{isEnable,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{isEnable,jdbcType=INTEGER}, 
       #{sortNo,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
@@ -60,7 +60,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -104,7 +104,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.troyboot.java.system.po.SysRole">
     update sys_role
@@ -114,6 +114,6 @@
       description = #{description,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

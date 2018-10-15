@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class UserOnline implements Serializable {
 
-    private static final long serialVersionUID = 3828664348416633856L;
+    private static final long serialVersionUID = 1L;
     // session id
     private String id;
     // 用户id

@@ -17,5 +17,5 @@ public interface SysRoleDao {
     @Select("select role.name from sys_role role" +
             " left join sys_user_role ur on ur.role_id = role.id" +
             " where ur.user_id = #{id}")
-    List<String> getSysRolesByUserId(Long id);
+    List<String> getSysRolesByUserId(int id);
 }

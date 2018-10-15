@@ -23,7 +23,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Autowired
     private SysRoleDao sysRoleDao;
 
-    public Set<String> getSysRoleByUserId(Long userId){
+    public Set<String> getSysRoleByUserId(int userId){
         List<String> setRoles = sysRoleDao.getSysRolesByUserId(userId);
         Set<String> rolesSet = new HashSet<>();
         for (String perm : setRoles) {

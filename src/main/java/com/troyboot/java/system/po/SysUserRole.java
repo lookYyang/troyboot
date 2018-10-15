@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class SysUserRole implements Serializable {
     private Integer id;
 
-    private Long userId;
+    private Integer userId;
 
-    private Long roleId;
+    private Integer roleId;
 
     private static final long serialVersionUID = 1L;
 
-    public SysUserRole(Integer id, Long userId, Long roleId) {
+    public SysUserRole(Integer id, Integer userId, Integer roleId) {
         this.id = id;
         this.userId = userId;
         this.roleId = roleId;
@@ -29,19 +29,19 @@ public class SysUserRole implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

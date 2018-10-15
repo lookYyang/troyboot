@@ -31,12 +31,12 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     private SysPermissionDao sysPermissionDao;
 
     @Override
-    public SysPermission getPermissionById(Long id) {
+    public SysPermission getPermissionById(int id) {
         return sysPermissionMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public List<Tree<SysPermission>> getPermissionByUserId(Long userId) {
+    public List<Tree<SysPermission>> getPermissionByUserId(int userId) {
         List<Tree<SysPermission>> trees = new ArrayList<Tree<SysPermission>>();
         List<SysPermission> sysPermissions = sysPermissionDao.getPermissionByUserId(userId);
         for (SysPermission sysPermission : sysPermissions) {
@@ -56,7 +56,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
-    public List<SysPermission> getPermissionByRoleId(Long roleId) {
+    public List<SysPermission> getPermissionByRoleId(int roleId) {
         return null;
     }
 
@@ -78,7 +78,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     }
 
     @Override
-    public Set<String> listPerms(Long userId) {
+    public Set<String> listPerms(int userId) {
         List<String> perms = sysPermissionDao.getPersByUserId(userId);
         Set<String> permsSet = new HashSet<>();
         for (String perm : perms) {

@@ -16,15 +16,15 @@ import java.util.Set;
 @Service
 public interface SysPermissionService {
 
-    SysPermission getPermissionById(Long id);
+    SysPermission getPermissionById(int id);
 
-    List<Tree<SysPermission>> getPermissionByUserId(Long id);
+    List<Tree<SysPermission>> getPermissionByUserId(int id);
 
-    List<SysPermission> getPermissionByRoleId(Long id);
+    List<SysPermission> getPermissionByRoleId(int id);
 
     PageUtils list(Map<String, Object> params);
 
     List<SysPermission> selectAll();
 
-    Set<String> listPerms(Long id);
+    Set<String> listPerms(int id);
 }

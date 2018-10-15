@@ -50,7 +50,7 @@ public class PermissionController {
 
     @RequiresPermissions("sys:permission:add")
     @GetMapping("/add/{id}")
-    String add(@PathVariable("id") Long id, Model model){
+    String add(@PathVariable("id") int id, Model model){
         SysPermission sysPermission = permissionService.getPermissionById(id);
         if(StringUtils.isEmpty(sysPermission.getId().toString())){
             model.addAttribute("per", "");

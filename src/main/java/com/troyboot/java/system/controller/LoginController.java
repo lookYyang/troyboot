@@ -1,6 +1,5 @@
 package com.troyboot.java.system.controller;
 
-import com.troyboot.java.common.utils.MD5Utils;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.ShiroUtils;
 import com.troyboot.java.system.domain.Tree;

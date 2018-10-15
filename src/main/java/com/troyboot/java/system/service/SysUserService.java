@@ -13,7 +13,7 @@ import java.util.Map;
 @Service
 public interface SysUserService {
 
-    SysUser getUserById(Long id);
+    SysUser getUserById(int id);
 
     void addUser(SysUser sysUser);
 
