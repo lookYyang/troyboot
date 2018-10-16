@@ -53,6 +53,7 @@ public class UserController {
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
     @PostMapping("/list")
     @ResponseBody
+    @Log("查询用户信息")
     PageUtils list(@RequestParam Map<String, Object> params) {
         return sysUserService.list(params);
     }

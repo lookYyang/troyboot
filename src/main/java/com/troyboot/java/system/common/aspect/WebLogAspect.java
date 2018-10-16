@@ -16,7 +16,7 @@ import java.util.Arrays;
 @Slf4j
 public class WebLogAspect {
 
-    @Pointcut("execution( * *(..))")
+    @Pointcut("execution( * com..controller.*.*(..))")//两个..代表所有子目录，最后括号里的两个..代表所有参数
     public void logPointCut() {
     }
 
@@ -25,6 +25,9 @@ public class WebLogAspect {
     public void doBefore(JoinPoint joinPoint) {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if(attributes == null){
+            return;
+        }
         HttpServletRequest request = attributes.getRequest();
 
         // 记录下请求内容
