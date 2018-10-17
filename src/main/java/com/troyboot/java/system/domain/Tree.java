@@ -1,6 +1,5 @@
 package com.troyboot.java.system.domain;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class Tree<T> {
 	/**
 	 * 显示节点文本
 	 */
-	private String text;
+	private String title;
 	/**
 	 * 节点状态，open closed
 	 */
@@ -53,5 +52,9 @@ public class Tree<T> {
 	 * 是否有子节点
 	 */
 	private boolean hasChildren = false;
+	/**
+	 * 是否自动展开
+	 */
+	private boolean expand = false;
 
 }

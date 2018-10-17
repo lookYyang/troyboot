@@ -1,4 +1,4 @@
-package com.troyboot.java.system.common.aspect;
+package com.troyboot.java.common.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

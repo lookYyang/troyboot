@@ -7,7 +7,7 @@ public class OutMessage extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
 	public OutMessage() {
-		put("code", 1);
+		put("code", 200);
 		put("msg", "操作成功");
 	}
 

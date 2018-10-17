@@ -43,7 +43,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
             Tree<SysPermission> tree = new Tree<SysPermission>();
             tree.setId(sysPermission.getId().toString());
             tree.setParentId(sysPermission.getParentId().toString());
-            tree.setText(sysPermission.getName());
+            tree.setTitle(sysPermission.getName());
             Map<String, Object> attributes = new HashMap<>(16);
             attributes.put("url", sysPermission.getUrl());
             attributes.put("icon", sysPermission.getIcon());

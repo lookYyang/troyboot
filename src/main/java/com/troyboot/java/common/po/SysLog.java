@@ -1,4 +1,4 @@
-package com.troyboot.java.system.common.po;
+package com.troyboot.java.common.po;
 
 import java.io.Serializable;
 import java.util.Date;

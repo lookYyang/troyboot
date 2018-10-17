@@ -3,7 +3,7 @@ package com.troyboot.java.system.controller;
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.common.annotation.Log;
+import com.troyboot.java.common.annotation.Log;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysUserService;
 import io.swagger.annotations.*;
@@ -47,7 +47,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "limit", value = "当前页码",
                     dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "size", value = "每页显示条数",
+            @ApiImplicitParam(name = "offset", value = "每页显示条数",
                     dataType = "Integer", paramType = "query")
     })
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
@@ -61,7 +61,6 @@ public class UserController {
     @PostMapping("/add")
     @Log("添加用户")
     public OutMessage addUser(SysUser sysUser){
-        sysUserService.addUser(sysUser);
-        return OutMessage.ok();
+        return sysUserService.addUser(sysUser);
     }
 }

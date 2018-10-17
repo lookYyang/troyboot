@@ -1,6 +1,6 @@
-package com.troyboot.java.system.common.dao;
+package com.troyboot.java.common.dao;
 
-import com.troyboot.java.system.common.po.SysLog;
+import com.troyboot.java.common.po.SysLog;
 
 public interface SysLogMapper {
     int deleteByPrimaryKey(Integer id);

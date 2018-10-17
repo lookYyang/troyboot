@@ -23,8 +23,8 @@ spring:
       enabled: true
 logging:
   level:
-    root: info
+    root: WARN
     com.troyboot.java: debug
     org.springframework: WARN
-    org.spring.springboot.dao: debug
+    org.spring.springboot.dao: WARN
   file: logs/dev.log

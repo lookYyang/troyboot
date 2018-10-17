@@ -22,9 +22,11 @@ public class SysUser implements Serializable {
 
     private Date createTime;
 
+    private String remark;
+
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Integer id, String name, String account, String password, Integer orgId, Integer isDelete, Integer status, String createBy, Date createTime) {
+    public SysUser(Integer id, String name, String account, String password, Integer orgId, Integer isDelete, Integer status, String createBy, Date createTime, String remark) {
         this.id = id;
         this.name = name;
         this.account = account;
@@ -34,6 +36,7 @@ public class SysUser implements Serializable {
         this.status = status;
         this.createBy = createBy;
         this.createTime = createTime;
+        this.remark = remark;
     }
 
     public SysUser() {
@@ -112,6 +115,14 @@ public class SysUser implements Serializable {
         this.createTime = createTime;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -132,7 +143,8 @@ public class SysUser implements Serializable {
             && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()));
     }
 
     @Override
@@ -148,6 +160,7 @@ public class SysUser implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCreateBy() == null) ? 0 : getCreateBy().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         return result;
     }
 }

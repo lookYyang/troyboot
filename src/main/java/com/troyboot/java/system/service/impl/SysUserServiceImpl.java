@@ -2,6 +2,7 @@ package com.troyboot.java.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.dao.SysUserMapper;
 import com.troyboot.java.system.po.SysUser;
@@ -30,13 +31,12 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Transactional
 	@Override
-	public void addUser(SysUser sysUser) {
-        sysUser.setName("test");
-        sysUser.setAccount("123123");
-        sysUser.setIsDelete(1);
-        sysUser.setPassword("1123123");
-        sysUser.setStatus(1);
-        sysUserMapper.insert(sysUser);
+	public OutMessage addUser(SysUser sysUser) {
+		OutMessage om = new OutMessage();
+		if( sysUserMapper.insert(sysUser) > 0){
+			return om.ok("插入成功");
+		}
+		return om.error("数据插入失败，请检查数据格式或联系管理员！");
 	}
 
     @Override

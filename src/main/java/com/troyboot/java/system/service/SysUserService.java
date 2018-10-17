@@ -1,5 +1,6 @@
 package com.troyboot.java.system.service;
 
+import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
 import com.troyboot.java.system.po.SysUser;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public interface SysUserService {
 
     SysUser getUserById(int id);
 
-    void addUser(SysUser sysUser);
+    OutMessage addUser(SysUser sysUser);
 
     PageUtils list(Map<String, Object> params);
 }

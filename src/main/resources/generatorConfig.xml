@@ -43,7 +43,7 @@
         </javaClientGenerator>
 
 
-        <table schema="mybatis" tableName="%"  enableCountByExample="false"
+        <table schema="mybatis" tableName="sys_org"  enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <property name="constructorBased" value="true" />

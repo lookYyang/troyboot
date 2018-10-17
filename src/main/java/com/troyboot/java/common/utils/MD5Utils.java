@@ -1,6 +1,6 @@
 package com.troyboot.java.common.utils;
 
-import com.troyboot.java.system.common.Constant;
+import com.troyboot.java.common.Constant;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 public class MD5Utils {

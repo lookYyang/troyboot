@@ -1,7 +1,7 @@
-package com.troyboot.java.system.common.service;
+package com.troyboot.java.common.service;
 
 import com.troyboot.java.common.utils.PageUtils;
-import com.troyboot.java.system.common.po.SysLog;
+import com.troyboot.java.common.po.SysLog;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

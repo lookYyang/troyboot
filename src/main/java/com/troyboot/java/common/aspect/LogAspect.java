@@ -1,13 +1,13 @@
-package com.troyboot.java.system.common.aspect;
+package com.troyboot.java.common.aspect;
 
 import com.troyboot.java.common.utils.HttpContextUtils;
 import com.troyboot.java.common.utils.IPUtils;
 import com.troyboot.java.common.utils.JSONUtils;
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.common.annotation.Log;
-import com.troyboot.java.system.common.po.SysLog;
+import com.troyboot.java.common.annotation.Log;
+import com.troyboot.java.common.po.SysLog;
 import com.troyboot.java.system.po.SysUser;
-import com.troyboot.java.system.common.service.SysLogService;
+import com.troyboot.java.common.service.SysLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -28,7 +28,7 @@ public class LogAspect {
     SysLogService logService;
 
 
-    @Pointcut("@annotation(com.troyboot.java.system.common.annotation.Log)")
+    @Pointcut("@annotation(com.troyboot.java.common.annotation.Log)")
     public void logPointCut() {
     }
 

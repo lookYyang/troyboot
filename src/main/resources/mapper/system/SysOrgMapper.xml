@@ -6,13 +6,16 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cascade_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_expanded" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sort_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, parent_id, sort_no, create_by, create_time
+    id, name, parent_id, cascade_id, is_expanded, sort_no, create_by, create_time, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +29,12 @@
   </delete>
   <insert id="insert" parameterType="com.troyboot.java.system.po.SysOrg">
     insert into sys_org (id, name, parent_id, 
-      sort_no, create_by, create_time
+      cascade_id, is_expanded, sort_no, 
+      create_by, create_time, remark
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
-      #{sortNo,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      #{cascadeId,jdbcType=VARCHAR}, #{isExpanded,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysOrg">
@@ -44,6 +49,12 @@
       <if test="parentId != null">
         parent_id,
       </if>
+      <if test="cascadeId != null">
+        cascade_id,
+      </if>
+      <if test="isExpanded != null">
+        is_expanded,
+      </if>
       <if test="sortNo != null">
         sort_no,
       </if>
@@ -52,6 +63,9 @@
       </if>
       <if test="createTime != null">
         create_time,
+      </if>
+      <if test="remark != null">
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -64,6 +78,12 @@
       <if test="parentId != null">
         #{parentId,jdbcType=INTEGER},
       </if>
+      <if test="cascadeId != null">
+        #{cascadeId,jdbcType=VARCHAR},
+      </if>
+      <if test="isExpanded != null">
+        #{isExpanded,jdbcType=VARCHAR},
+      </if>
       <if test="sortNo != null">
         #{sortNo,jdbcType=INTEGER},
       </if>
@@ -72,6 +92,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -84,6 +107,12 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
+      <if test="cascadeId != null">
+        cascade_id = #{cascadeId,jdbcType=VARCHAR},
+      </if>
+      <if test="isExpanded != null">
+        is_expanded = #{isExpanded,jdbcType=VARCHAR},
+      </if>
       <if test="sortNo != null">
         sort_no = #{sortNo,jdbcType=INTEGER},
       </if>
@@ -93,6 +122,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -100,9 +132,12 @@
     update sys_org
     set name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
+      cascade_id = #{cascadeId,jdbcType=VARCHAR},
+      is_expanded = #{isExpanded,jdbcType=VARCHAR},
       sort_no = #{sortNo,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

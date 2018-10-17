@@ -54,6 +54,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.37</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -140,6 +141,12 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.4</version>
 		</dependency>
+        <!--mybatis使用java8的时间-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <!-- 热部署 -->
 
     </dependencies>

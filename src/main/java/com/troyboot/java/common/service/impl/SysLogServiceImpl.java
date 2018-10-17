@@ -1,12 +1,12 @@
-package com.troyboot.java.system.common.service.impl;
+package com.troyboot.java.common.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.troyboot.java.common.utils.PageUtils;
-import com.troyboot.java.system.common.dao.SysLogMapper;
-import com.troyboot.java.system.common.po.SysLog;
+import com.troyboot.java.common.dao.SysLogMapper;
+import com.troyboot.java.common.po.SysLog;
 import com.troyboot.java.system.po.SysUser;
-import com.troyboot.java.system.common.service.SysLogService;
+import com.troyboot.java.common.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

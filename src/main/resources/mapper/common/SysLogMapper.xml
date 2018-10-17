@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.troyboot.java.system.common.dao.SysLogMapper">
-  <resultMap id="BaseResultMap" type="com.troyboot.java.system.common.po.SysLog">
+<mapper namespace="com.troyboot.java.common.dao.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.troyboot.java.common.po.SysLog">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -27,7 +27,7 @@
     delete from sys_log
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.troyboot.java.system.common.po.SysLog">
+  <insert id="insert" parameterType="com.troyboot.java.common.po.SysLog">
     insert into sys_log (id, user_id, user_name, 
       operation, time, method, 
       params, ip, create_time
@@ -37,7 +37,7 @@
       #{params,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.troyboot.java.system.common.po.SysLog">
+  <insert id="insertSelective" parameterType="com.troyboot.java.common.po.SysLog">
     insert into sys_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -98,7 +98,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.troyboot.java.system.common.po.SysLog">
+  <update id="updateByPrimaryKeySelective" parameterType="com.troyboot.java.common.po.SysLog">
     update sys_log
     <set>
       <if test="userId != null">
@@ -128,7 +128,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.troyboot.java.system.common.po.SysLog">
+  <update id="updateByPrimaryKey" parameterType="com.troyboot.java.common.po.SysLog">
     update sys_log
     set user_id = #{userId,jdbcType=INTEGER},
       user_name = #{userName,jdbcType=VARCHAR},

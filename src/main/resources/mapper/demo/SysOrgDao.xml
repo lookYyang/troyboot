@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.troyboot.java.system.service.dao.SysOrgDao">
+  <resultMap id="BaseResultMap" type="com.troyboot.java.system.po.SysOrg">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cascade_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_expanded" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, parent_id, cascade_id, is_expanded, sort_no, create_by, create_time, remark
+  </sql>
+
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_org
+  </select>
+
+  <select id="getTreeByCascade" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_org
+    where cascade_id like '#{cascadeId}%'
+  </select>
+
+  <delete id="batchRemove">
+    delete from sys_org where id in
+    <foreach item="id" collection="array" open="(" separator=","
+             close=")">
+      #{ids}
+    </foreach>
+  </delete>
+
+  <!-- 查询某节点下子节点的最大语义ID -->
+  <select id="getMaxCascadeId" resultType="String">
+	     SELECT MAX(cascade_id) AS max_cascade_id FROM sys_org WHERE parent_id = #{parent_id}
+	</select>
+</mapper>

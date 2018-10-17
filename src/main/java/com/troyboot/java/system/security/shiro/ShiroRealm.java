@@ -1,7 +1,7 @@
 package com.troyboot.java.system.security.shiro;
 
 import com.troyboot.java.common.utils.ShiroUtils;
-import com.troyboot.java.system.common.Constant;
+import com.troyboot.java.common.Constant;
 import com.troyboot.java.system.config.ApplicationContextRegister;
 import com.troyboot.java.system.po.SysUser;
 import com.troyboot.java.system.service.SysPermissionService;

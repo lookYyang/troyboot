@@ -7,10 +7,10 @@
 <div id="content">
     <div class="ibox-content">
         <div class="row row-lg">
-            <div class="col-sm-4">
+            <div class="col-sm-4 media mt-3">
                 <h4 class="example-title">组织机构树</h4>
                 <div class="example">
-                    <tree url=""></tree>
+                    <tree :url="treeUrl"></tree>
                 </div>
             </div>
             <div class="col-sm-8">
@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <div th:include="include::footer"></div>
@@ -38,39 +39,11 @@
             return {
                 columns: [
                     {type: 'selection', align: 'center', width: 60},
-                    {title: '姓名', key: 'name', align: 'center'},
-                    {title: '账号', key: 'account', align: 'center'},
-                    {title: '用户状态', key: 'status', align: 'center',
-                        filters: [
-                            {
-                                label: '启用',
-                                value: 1
-                            },
-                            {
-                                label: '禁用',
-                                value: 0
-                            }
-                        ],
-                        filterMultiple: false,
-                        filterMethod (value, row) {
-                            if (value === 1) {
-                                return row.status = 1;
-                            } else if (value === 0) {
-                                return row.status = 0;
-                            }
-                        },
-                        render: (h, params) => {
-                            let texts = '';
-                            if(params.row.status == 1){
-                                texts = "启用";
-                            }else if(params.row.status == 0) {
-                                texts = "禁用";
-                            }
-                            return h('div', {
-                                props: {},
-                            },texts)
-                        }
-                    },
+                    {title: '机构名称', key: 'name', align: 'center'},
+                    {title: '是否展开', key: 'is_expanded', align: 'center'},
+                    {title: '创建人', key: 'create_by', align: 'center'},
+                    {title: '创建时间', key: 'create_time', align: 'center'},
+                    {title: '排序号', key: 'sort_no', align: 'center'},
                     {
                         title: '操作', key: 'action', width: 100, align: 'center',
                         render: (h, params) => {
@@ -91,32 +64,15 @@
                     }
                 ],
                 // 表格信息
-                tableUrl: '/sys/user/list',
+                tableUrl: '/sys/org/list',
                 // 树信息
-                treeData: '',
+                treeUrl: '/sys/org/orgTree',
             }
         },
         computed:{
 
         },
-        mounted (){
-            this.initTree();
-        },
         methods: {
-            initTree() {
-                this.treeData = [
-                    {title: 'parent 1', expand: true,
-                        children: [
-                            {title: 'parent 1-1', expand: true,
-                                children: [{title: 'leaf 1-1-1'}, {title: 'leaf 1-1-2'}]
-                            },
-                            {title: 'parent 1-2', expand: true,
-                                children: [{title: 'leaf 1-2-1'}, {title: 'leaf 1-2-1'}]
-                            }
-                        ]
-                    }
-                ];
-            },
             refreshTable(){
                 this.$refs['tablePage'].loadData();
             },

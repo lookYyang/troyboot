@@ -12,10 +12,11 @@
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, account, password, org_id, is_delete, status, create_by, create_time
+    id, name, account, password, org_id, is_delete, status, create_by, create_time, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,12 +31,12 @@
   <insert id="insert" parameterType="com.troyboot.java.system.po.SysUser">
     insert into sys_user (id, name, account, 
       password, org_id, is_delete, 
-      status, create_by, create_time
-      )
+      status, create_by, create_time, 
+      remark)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{orgId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{status,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysUser">
     insert into sys_user
@@ -67,6 +68,9 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="remark != null">
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -95,6 +99,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -125,6 +132,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -137,7 +147,8 @@
       is_delete = #{isDelete,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

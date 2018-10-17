@@ -1,4 +1,4 @@
-package com.troyboot.java.system.common;
+package com.troyboot.java.common;
 
 /**
  * @Authour YangYang

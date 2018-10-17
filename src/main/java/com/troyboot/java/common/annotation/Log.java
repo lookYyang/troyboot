@@ -1,4 +1,4 @@
-package com.troyboot.java.system.common.annotation;
+package com.troyboot.java.common.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.ElementType;
