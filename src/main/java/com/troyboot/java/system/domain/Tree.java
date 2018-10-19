@@ -56,5 +56,9 @@ public class Tree<T> {
 	 * 是否自动展开
 	 */
 	private boolean expand = false;
+	/**
+	 * 序列编码
+	 */
+	private String cascadeId;
 
 }

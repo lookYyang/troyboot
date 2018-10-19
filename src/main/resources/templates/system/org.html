@@ -7,27 +7,28 @@
 <div id="content">
     <div class="ibox-content">
         <div class="row row-lg">
-            <div class="col-sm-4 media mt-3">
+            <div class="col-sm-4">
                 <h4 class="example-title">组织机构树</h4>
                 <div class="example">
-                    <tree :url="treeUrl"></tree>
+                    <tree ref="orgTree" :url="treeUrl" @cache-node="cacheNode"></tree>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="fixed-table-toolbar">
                     <div class="columns pull-left">
-                        <i-button type="primary" @click="add">添加</i-button>
+                        <i-button type="primary" @click="add('orgTree')">添加</i-button>
                         <i-button type="warning" @click="batchRemove('tablePage')">删除</i-button>
                     </div>
                 </div>
                 <div class="ibox">
                     <div class="ibox-body table-responsive">
-                        <table-page ref="tablePage" :url="tableUrl" :columns="columns"></table-page>
+                        <table-page ref="tablePage" :url="tableUrl" :columns="columns" :searchParams="tbSearchParams"></table-page>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 </div>
 
@@ -40,8 +41,20 @@
                 columns: [
                     {type: 'selection', align: 'center', width: 60},
                     {title: '机构名称', key: 'name', align: 'center'},
-                    {title: '是否展开', key: 'is_expanded', align: 'center'},
-                    {title: '创建人', key: 'create_by', align: 'center'},
+                    {title: '是否展开', key: 'is_expanded', align: 'center',
+                        render: (h, params) => {
+                            let texts = '';
+                            if(params.row.is_expanded == 1){
+                                texts = "是";
+                            }else if(params.row.is_expanded == 0) {
+                                texts = "否";
+                            }
+                            return h('div', {
+                                props: {},
+                            },texts)
+                        }
+                    },
+                    {title: '创建人', key: 'user_name', align: 'center'},
                     {title: '创建时间', key: 'create_time', align: 'center'},
                     {title: '排序号', key: 'sort_no', align: 'center'},
                     {
@@ -63,10 +76,28 @@
                         }
                     }
                 ],
+                // 表格搜索参数
+                tbSearchParams: {},
                 // 表格信息
                 tableUrl: '/sys/org/list',
                 // 树信息
                 treeUrl: '/sys/org/orgTree',
+
+                // 弹框信息
+                showModal: false,
+                formTitle:'',
+                formItem: {
+                    parent_name:'',
+                    name: '',
+                    parent_id:'',
+                    sort_no: '',
+                    is_expanded: '',
+                    remark:'',
+                },
+                ruleValidate:{
+                    required:[{required: true, type: 'string', message: '', trigger: 'change'}],
+                },
+                selectNode: {},
             }
         },
         computed:{
@@ -74,11 +105,19 @@
         },
         methods: {
             refreshTable(){
-                this.$refs['tablePage'].loadData();
+                this.$refs['tablePage'].loadData(this.tbSearchParams);
+            },
+            refreshTree(){
+                this.$refs['orgTree'].loadData();
+            },
+            cacheNode(selectNode){
+                this.tbSearchParams.cascade_id = selectNode.cascadeId;
+                this.formItem.parent_name = selectNode.name;
+                this.refreshTable();
             },
             // 新增按钮
             add() {
-                this.refreshTable();
+                this.showModal = true;
             },
             // 批量删除按钮
             batchRemove(name) {
@@ -107,6 +146,15 @@
             edit(row){
                 console.log(row);
                 this.refreshTable();
+            },
+
+            // 表单提交按钮
+            submit() {
+
+            },
+            // 表单取消按钮
+            cancel() {
+
             },
         }
     })

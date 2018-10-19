@@ -2,7 +2,6 @@ package com.troyboot.java.system.service;
 
 import com.troyboot.java.common.utils.OutMessage;
 import com.troyboot.java.common.utils.PageUtils;
-import com.troyboot.java.system.domain.Tree;
 import com.troyboot.java.system.po.SysOrg;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ public interface SysOrgService {
 
     PageUtils list(Map<String, Object> params);
 
-    Tree<SysOrg> getTree();
+    OutMessage getTree();
 
     OutMessage save(SysOrg sysOrg);
 

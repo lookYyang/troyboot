@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Authour YangYang
@@ -14,9 +15,9 @@ import java.util.List;
 @Mapper
 public interface SysOrgDao {
 
-    List<SysOrg> selectAll();
+    List<Map<String, Object>> selectAll();
 
-    List<SysOrg> getTreeByCascade(String cascadeId);
+    List<SysOrg> getTreeByCascade(Map<String, Object> params);
 
     int batchRemove(int[] ids);
 

@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class SysUserRole implements Serializable {
     private Integer id;
 
-    private Integer userId;
+    private Integer user_id;
 
-    private Integer roleId;
+    private Integer role_id;
 
     private static final long serialVersionUID = 1L;
 
-    public SysUserRole(Integer id, Integer userId, Integer roleId) {
+    public SysUserRole(Integer id, Integer user_id, Integer role_id) {
         this.id = id;
-        this.userId = userId;
-        this.roleId = roleId;
+        this.user_id = user_id;
+        this.role_id = role_id;
     }
 
     public SysUserRole() {
@@ -29,20 +29,20 @@ public class SysUserRole implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getRole_id() {
+        return role_id;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRole_id(Integer role_id) {
+        this.role_id = role_id;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class SysUserRole implements Serializable {
         }
         SysUserRole other = (SysUserRole) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()));
+            && (this.getUser_id() == null ? other.getUser_id() == null : this.getUser_id().equals(other.getUser_id()))
+            && (this.getRole_id() == null ? other.getRole_id() == null : this.getRole_id().equals(other.getRole_id()));
     }
 
     @Override
@@ -67,8 +67,8 @@ public class SysUserRole implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getUser_id() == null) ? 0 : getUser_id().hashCode());
+        result = prime * result + ((getRole_id() == null) ? 0 : getRole_id().hashCode());
         return result;
     }
 }

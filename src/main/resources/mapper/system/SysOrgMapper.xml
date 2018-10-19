@@ -32,9 +32,9 @@
       cascade_id, is_expanded, sort_no, 
       create_by, create_time, remark
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
-      #{cascadeId,jdbcType=VARCHAR}, #{isExpanded,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
-      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parent_id,jdbcType=INTEGER}, 
+      #{cascade_id,jdbcType=VARCHAR}, #{is_expanded,jdbcType=VARCHAR}, #{sort_no,jdbcType=INTEGER}, 
+      #{create_by,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysOrg">
@@ -46,22 +46,22 @@
       <if test="name != null">
         name,
       </if>
-      <if test="parentId != null">
+      <if test="parent_id != null">
         parent_id,
       </if>
-      <if test="cascadeId != null">
+      <if test="cascade_id != null">
         cascade_id,
       </if>
-      <if test="isExpanded != null">
+      <if test="is_expanded != null">
         is_expanded,
       </if>
-      <if test="sortNo != null">
+      <if test="sort_no != null">
         sort_no,
       </if>
-      <if test="createBy != null">
+      <if test="create_by != null">
         create_by,
       </if>
-      <if test="createTime != null">
+      <if test="create_time != null">
         create_time,
       </if>
       <if test="remark != null">
@@ -75,23 +75,23 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=INTEGER},
+      <if test="parent_id != null">
+        #{parent_id,jdbcType=INTEGER},
       </if>
-      <if test="cascadeId != null">
-        #{cascadeId,jdbcType=VARCHAR},
+      <if test="cascade_id != null">
+        #{cascade_id,jdbcType=VARCHAR},
       </if>
-      <if test="isExpanded != null">
-        #{isExpanded,jdbcType=VARCHAR},
+      <if test="is_expanded != null">
+        #{is_expanded,jdbcType=VARCHAR},
       </if>
-      <if test="sortNo != null">
-        #{sortNo,jdbcType=INTEGER},
+      <if test="sort_no != null">
+        #{sort_no,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -104,23 +104,23 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=INTEGER},
+      <if test="parent_id != null">
+        parent_id = #{parent_id,jdbcType=INTEGER},
       </if>
-      <if test="cascadeId != null">
-        cascade_id = #{cascadeId,jdbcType=VARCHAR},
+      <if test="cascade_id != null">
+        cascade_id = #{cascade_id,jdbcType=VARCHAR},
       </if>
-      <if test="isExpanded != null">
-        is_expanded = #{isExpanded,jdbcType=VARCHAR},
+      <if test="is_expanded != null">
+        is_expanded = #{is_expanded,jdbcType=VARCHAR},
       </if>
-      <if test="sortNo != null">
-        sort_no = #{sortNo,jdbcType=INTEGER},
+      <if test="sort_no != null">
+        sort_no = #{sort_no,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        create_by = #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -131,12 +131,12 @@
   <update id="updateByPrimaryKey" parameterType="com.troyboot.java.system.po.SysOrg">
     update sys_org
     set name = #{name,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      cascade_id = #{cascadeId,jdbcType=VARCHAR},
-      is_expanded = #{isExpanded,jdbcType=VARCHAR},
-      sort_no = #{sortNo,jdbcType=INTEGER},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      parent_id = #{parent_id,jdbcType=INTEGER},
+      cascade_id = #{cascade_id,jdbcType=VARCHAR},
+      is_expanded = #{is_expanded,jdbcType=VARCHAR},
+      sort_no = #{sort_no,jdbcType=INTEGER},
+      create_by = #{create_by,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

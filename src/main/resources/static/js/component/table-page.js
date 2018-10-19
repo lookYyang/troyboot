@@ -39,16 +39,12 @@ Vue.component('table-page', {
         }
     },
     mounted(){
-        this.initTable();
+        this.loadData();
     },
     computed: {
 
     },
     methods: {
-        initTable() {
-            this.loadData();
-        },
-
         pageChange(limit) {
             this.limit = limit;
             this.loadData();
@@ -62,12 +58,15 @@ Vue.component('table-page', {
             this.selectRows = rowsId;
         },
 
-        loadData() {
+        loadData(tbSearchParams) {
             var self = this;
             // 如果需要分页，把分页数据添加到参数中
             if(this.showPages){
                 this.searchParams.limit = this.limit;
                 this.searchParams.offset = this.offset;
+            }
+            if(tbSearchParams){
+                this.searchParams = _.concat(this.searchParams, tbSearchParams);
             }
             this.loading = true;
             $.ajax({
@@ -75,7 +74,7 @@ Vue.component('table-page', {
                 url : Global.baseUrl + this.url,
                 data: this.searchParams,
                 success: function(data) {
-                    if(_.isEqual(data.code, 200)){
+                    if(_.isEqual(data.code, CODE.SUCCESS_CODE)){
                         self.tableData = data.rows;
                         self.pageTotal = data.total;
                         self.loading = false;

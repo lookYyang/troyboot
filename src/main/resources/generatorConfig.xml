@@ -43,11 +43,12 @@
         </javaClientGenerator>
 
 
-        <table schema="mybatis" tableName="sys_org"  enableCountByExample="false"
+        <table schema="mybatis" tableName="sys_user_role"  enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <property name="constructorBased" value="true" />
-            <property name="useActualColumnNames" value="false" />
+            <!-- 取消驼峰命名 -->
+            <property name="useActualColumnNames" value="true" />
             <property name="ignoreQualifiersAtRuntime" value="true" />
         </table>
     </context>

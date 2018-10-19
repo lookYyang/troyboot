@@ -29,9 +29,9 @@
     insert into sys_role (id, name, is_enable, 
       sort_no, description, create_by, 
       create_time)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{isEnable,jdbcType=INTEGER}, 
-      #{sortNo,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{is_enable,jdbcType=INTEGER}, 
+      #{sort_no,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{create_by,jdbcType=VARCHAR}, 
+      #{create_time,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysRole">
     insert into sys_role
@@ -42,19 +42,19 @@
       <if test="name != null">
         name,
       </if>
-      <if test="isEnable != null">
+      <if test="is_enable != null">
         is_enable,
       </if>
-      <if test="sortNo != null">
+      <if test="sort_no != null">
         sort_no,
       </if>
       <if test="description != null">
         description,
       </if>
-      <if test="createBy != null">
+      <if test="create_by != null">
         create_by,
       </if>
-      <if test="createTime != null">
+      <if test="create_time != null">
         create_time,
       </if>
     </trim>
@@ -65,20 +65,20 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="isEnable != null">
-        #{isEnable,jdbcType=INTEGER},
+      <if test="is_enable != null">
+        #{is_enable,jdbcType=INTEGER},
       </if>
-      <if test="sortNo != null">
-        #{sortNo,jdbcType=INTEGER},
+      <if test="sort_no != null">
+        #{sort_no,jdbcType=INTEGER},
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -88,20 +88,20 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="isEnable != null">
-        is_enable = #{isEnable,jdbcType=INTEGER},
+      <if test="is_enable != null">
+        is_enable = #{is_enable,jdbcType=INTEGER},
       </if>
-      <if test="sortNo != null">
-        sort_no = #{sortNo,jdbcType=INTEGER},
+      <if test="sort_no != null">
+        sort_no = #{sort_no,jdbcType=INTEGER},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        create_by = #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -109,11 +109,11 @@
   <update id="updateByPrimaryKey" parameterType="com.troyboot.java.system.po.SysRole">
     update sys_role
     set name = #{name,jdbcType=VARCHAR},
-      is_enable = #{isEnable,jdbcType=INTEGER},
-      sort_no = #{sortNo,jdbcType=INTEGER},
+      is_enable = #{is_enable,jdbcType=INTEGER},
+      sort_no = #{sort_no,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_by = #{create_by,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

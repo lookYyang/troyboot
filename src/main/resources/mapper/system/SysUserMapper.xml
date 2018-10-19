@@ -34,8 +34,8 @@
       status, create_by, create_time, 
       remark)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{orgId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{password,jdbcType=VARCHAR}, #{org_id,jdbcType=INTEGER}, #{is_delete,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{create_by,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.system.po.SysUser">
@@ -53,19 +53,19 @@
       <if test="password != null">
         password,
       </if>
-      <if test="orgId != null">
+      <if test="org_id != null">
         org_id,
       </if>
-      <if test="isDelete != null">
+      <if test="is_delete != null">
         is_delete,
       </if>
       <if test="status != null">
         status,
       </if>
-      <if test="createBy != null">
+      <if test="create_by != null">
         create_by,
       </if>
-      <if test="createTime != null">
+      <if test="create_time != null">
         create_time,
       </if>
       <if test="remark != null">
@@ -85,20 +85,20 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="orgId != null">
-        #{orgId,jdbcType=INTEGER},
+      <if test="org_id != null">
+        #{org_id,jdbcType=INTEGER},
       </if>
-      <if test="isDelete != null">
-        #{isDelete,jdbcType=INTEGER},
+      <if test="is_delete != null">
+        #{is_delete,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -117,20 +117,20 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="orgId != null">
-        org_id = #{orgId,jdbcType=INTEGER},
+      <if test="org_id != null">
+        org_id = #{org_id,jdbcType=INTEGER},
       </if>
-      <if test="isDelete != null">
-        is_delete = #{isDelete,jdbcType=INTEGER},
+      <if test="is_delete != null">
+        is_delete = #{is_delete,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=VARCHAR},
+      <if test="create_by != null">
+        create_by = #{create_by,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -143,11 +143,11 @@
     set name = #{name,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      org_id = #{orgId,jdbcType=INTEGER},
-      is_delete = #{isDelete,jdbcType=INTEGER},
+      org_id = #{org_id,jdbcType=INTEGER},
+      is_delete = #{is_delete,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{create_by,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

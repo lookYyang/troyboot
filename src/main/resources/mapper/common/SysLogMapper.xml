@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.troyboot.java.common.dao.SysLogMapper">
+<mapper namespace="com.troyboot.java.system.dao.SysLogMapper">
   <resultMap id="BaseResultMap" type="com.troyboot.java.common.po.SysLog">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -32,9 +32,9 @@
       operation, time, method, 
       params, ip, create_time
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{user_name,jdbcType=VARCHAR}, 
       #{operation,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR}, 
-      #{params,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      #{params,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.troyboot.java.common.po.SysLog">
@@ -43,10 +43,10 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
+      <if test="user_id != null">
         user_id,
       </if>
-      <if test="userName != null">
+      <if test="user_name != null">
         user_name,
       </if>
       <if test="operation != null">
@@ -64,7 +64,7 @@
       <if test="ip != null">
         ip,
       </if>
-      <if test="createTime != null">
+      <if test="create_time != null">
         create_time,
       </if>
     </trim>
@@ -72,11 +72,11 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="user_id != null">
+        #{user_id,jdbcType=INTEGER},
       </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
+      <if test="user_name != null">
+        #{user_name,jdbcType=VARCHAR},
       </if>
       <if test="operation != null">
         #{operation,jdbcType=VARCHAR},
@@ -93,19 +93,19 @@
       <if test="ip != null">
         #{ip,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.troyboot.java.common.po.SysLog">
     update sys_log
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="user_id != null">
+        user_id = #{user_id,jdbcType=INTEGER},
       </if>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="user_name != null">
+        user_name = #{user_name,jdbcType=VARCHAR},
       </if>
       <if test="operation != null">
         operation = #{operation,jdbcType=VARCHAR},
@@ -122,22 +122,22 @@
       <if test="ip != null">
         ip = #{ip,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.troyboot.java.common.po.SysLog">
     update sys_log
-    set user_id = #{userId,jdbcType=INTEGER},
-      user_name = #{userName,jdbcType=VARCHAR},
+    set user_id = #{user_id,jdbcType=INTEGER},
+      user_name = #{user_name,jdbcType=VARCHAR},
       operation = #{operation,jdbcType=VARCHAR},
       time = #{time,jdbcType=INTEGER},
       method = #{method,jdbcType=VARCHAR},
       params = #{params,jdbcType=VARCHAR},
       ip = #{ip,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{create_time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

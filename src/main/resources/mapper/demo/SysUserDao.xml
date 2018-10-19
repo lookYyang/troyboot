@@ -12,10 +12,11 @@
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, account, password, org_id, is_delete, status, create_by, create_time
+    id, name, account, password, org_id, is_delete, status, create_by, create_time, remark
   </sql>
   <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
     select

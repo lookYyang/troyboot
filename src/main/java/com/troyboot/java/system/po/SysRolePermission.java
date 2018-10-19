@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class SysRolePermission implements Serializable {
     private Integer id;
 
-    private Integer permissionId;
+    private Integer permission_id;
 
-    private Integer roleId;
+    private Integer role_id;
 
     private static final long serialVersionUID = 1L;
 
-    public SysRolePermission(Integer id, Integer permissionId, Integer roleId) {
+    public SysRolePermission(Integer id, Integer permission_id, Integer role_id) {
         this.id = id;
-        this.permissionId = permissionId;
-        this.roleId = roleId;
+        this.permission_id = permission_id;
+        this.role_id = role_id;
     }
 
     public SysRolePermission() {
@@ -29,20 +29,20 @@ public class SysRolePermission implements Serializable {
         this.id = id;
     }
 
-    public Integer getPermissionId() {
-        return permissionId;
+    public Integer getPermission_id() {
+        return permission_id;
     }
 
-    public void setPermissionId(Integer permissionId) {
-        this.permissionId = permissionId;
+    public void setPermission_id(Integer permission_id) {
+        this.permission_id = permission_id;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getRole_id() {
+        return role_id;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRole_id(Integer role_id) {
+        this.role_id = role_id;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class SysRolePermission implements Serializable {
         }
         SysRolePermission other = (SysRolePermission) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getPermissionId() == null ? other.getPermissionId() == null : this.getPermissionId().equals(other.getPermissionId()))
-            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()));
+            && (this.getPermission_id() == null ? other.getPermission_id() == null : this.getPermission_id().equals(other.getPermission_id()))
+            && (this.getRole_id() == null ? other.getRole_id() == null : this.getRole_id().equals(other.getRole_id()));
     }
 
     @Override
@@ -67,8 +67,8 @@ public class SysRolePermission implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getPermissionId() == null) ? 0 : getPermissionId().hashCode());
-        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getPermission_id() == null) ? 0 : getPermission_id().hashCode());
+        result = prime * result + ((getRole_id() == null) ? 0 : getRole_id().hashCode());
         return result;
     }
 }

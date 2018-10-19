@@ -73,20 +73,20 @@ public class LogAspect {
         SysUser currUser = ShiroUtils.getUser();
         if (null == currUser) {
             if (null != sysLog.getParams()) {
-                sysLog.setUserId(-1);
-                sysLog.setUserName(sysLog.getUserName());
+                sysLog.setUser_id(-1);
+                sysLog.setUser_name(sysLog.getUser_name());
             } else {
-                sysLog.setUserId(-1);
-                sysLog.setUserName("获取用户信息为空");
+                sysLog.setUser_id(-1);
+                sysLog.setUser_name("获取用户信息为空");
             }
         } else {
-            sysLog.setUserId(ShiroUtils.getUser().getId());
-            sysLog.setUserName(ShiroUtils.getUser().getName());
+            sysLog.setUser_id(ShiroUtils.getUser().getId());
+            sysLog.setUser_name(ShiroUtils.getUser().getName());
         }
         sysLog.setTime((int) time);
         // 系统当前时间
         Date date = new Date();
-        sysLog.setCreateTime(date);
+        sysLog.setCreate_time(date);
         // 保存系统日志
         logService.save(sysLog);
     }

@@ -66,8 +66,7 @@
                             url : Global.baseUrl + '/login',
                             data : _this.formItem,
                             success : function(outMsg) {
-                                console.log(outMsg);
-                                if (outMsg.code == '1') {
+                                if (outMsg.code == CODE.SUCCESS_CODE) {
                                     parent.location.href = Global.baseUrl + '/index';
                                 } else {
                                     _this.$Message.error(outMsg.msg);

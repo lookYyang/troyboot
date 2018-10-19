@@ -6,7 +6,7 @@ import java.util.Date;
 public class SysPermission implements Serializable {
     private Integer id;
 
-    private Integer parentId;
+    private Integer parent_id;
 
     private String name;
 
@@ -18,28 +18,28 @@ public class SysPermission implements Serializable {
 
     private String type;
 
-    private Integer sortNo;
+    private Integer sort_no;
 
-    private Integer isEnable;
+    private Integer is_enable;
 
-    private String createBy;
+    private String create_by;
 
-    private Date createTime;
+    private Date create_time;
 
     private static final long serialVersionUID = 1L;
 
-    public SysPermission(Integer id, Integer parentId, String name, String permission, String url, String icon, String type, Integer sortNo, Integer isEnable, String createBy, Date createTime) {
+    public SysPermission(Integer id, Integer parent_id, String name, String permission, String url, String icon, String type, Integer sort_no, Integer is_enable, String create_by, Date create_time) {
         this.id = id;
-        this.parentId = parentId;
+        this.parent_id = parent_id;
         this.name = name;
         this.permission = permission;
         this.url = url;
         this.icon = icon;
         this.type = type;
-        this.sortNo = sortNo;
-        this.isEnable = isEnable;
-        this.createBy = createBy;
-        this.createTime = createTime;
+        this.sort_no = sort_no;
+        this.is_enable = is_enable;
+        this.create_by = create_by;
+        this.create_time = create_time;
     }
 
     public SysPermission() {
@@ -54,12 +54,12 @@ public class SysPermission implements Serializable {
         this.id = id;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Integer getParent_id() {
+        return parent_id;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParent_id(Integer parent_id) {
+        this.parent_id = parent_id;
     }
 
     public String getName() {
@@ -102,36 +102,36 @@ public class SysPermission implements Serializable {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getSortNo() {
-        return sortNo;
+    public Integer getSort_no() {
+        return sort_no;
     }
 
-    public void setSortNo(Integer sortNo) {
-        this.sortNo = sortNo;
+    public void setSort_no(Integer sort_no) {
+        this.sort_no = sort_no;
     }
 
-    public Integer getIsEnable() {
-        return isEnable;
+    public Integer getIs_enable() {
+        return is_enable;
     }
 
-    public void setIsEnable(Integer isEnable) {
-        this.isEnable = isEnable;
+    public void setIs_enable(Integer is_enable) {
+        this.is_enable = is_enable;
     }
 
-    public String getCreateBy() {
-        return createBy;
+    public String getCreate_by() {
+        return create_by;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy.trim();
+    public void setCreate_by(String create_by) {
+        this.create_by = create_by == null ? null : create_by.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 
     @Override
@@ -147,16 +147,16 @@ public class SysPermission implements Serializable {
         }
         SysPermission other = (SysPermission) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
+            && (this.getParent_id() == null ? other.getParent_id() == null : this.getParent_id().equals(other.getParent_id()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPermission() == null ? other.getPermission() == null : this.getPermission().equals(other.getPermission()))
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
             && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
-            && (this.getSortNo() == null ? other.getSortNo() == null : this.getSortNo().equals(other.getSortNo()))
-            && (this.getIsEnable() == null ? other.getIsEnable() == null : this.getIsEnable().equals(other.getIsEnable()))
-            && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+            && (this.getSort_no() == null ? other.getSort_no() == null : this.getSort_no().equals(other.getSort_no()))
+            && (this.getIs_enable() == null ? other.getIs_enable() == null : this.getIs_enable().equals(other.getIs_enable()))
+            && (this.getCreate_by() == null ? other.getCreate_by() == null : this.getCreate_by().equals(other.getCreate_by()))
+            && (this.getCreate_time() == null ? other.getCreate_time() == null : this.getCreate_time().equals(other.getCreate_time()));
     }
 
     @Override
@@ -164,16 +164,16 @@ public class SysPermission implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
+        result = prime * result + ((getParent_id() == null) ? 0 : getParent_id().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPermission() == null) ? 0 : getPermission().hashCode());
         result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
         result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
-        result = prime * result + ((getSortNo() == null) ? 0 : getSortNo().hashCode());
-        result = prime * result + ((getIsEnable() == null) ? 0 : getIsEnable().hashCode());
-        result = prime * result + ((getCreateBy() == null) ? 0 : getCreateBy().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getSort_no() == null) ? 0 : getSort_no().hashCode());
+        result = prime * result + ((getIs_enable() == null) ? 0 : getIs_enable().hashCode());
+        result = prime * result + ((getCreate_by() == null) ? 0 : getCreate_by().hashCode());
+        result = prime * result + ((getCreate_time() == null) ? 0 : getCreate_time().hashCode());
         return result;
     }
 }

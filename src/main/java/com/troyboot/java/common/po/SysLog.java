@@ -6,9 +6,9 @@ import java.util.Date;
 public class SysLog implements Serializable {
     private Integer id;
 
-    private Integer userId;
+    private Integer user_id;
 
-    private String userName;
+    private String user_name;
 
     private String operation;
 
@@ -20,20 +20,20 @@ public class SysLog implements Serializable {
 
     private String ip;
 
-    private Date createTime;
+    private Date create_time;
 
     private static final long serialVersionUID = 1L;
 
-    public SysLog(Integer id, Integer userId, String userName, String operation, Integer time, String method, String params, String ip, Date createTime) {
+    public SysLog(Integer id, Integer user_id, String user_name, String operation, Integer time, String method, String params, String ip, Date create_time) {
         this.id = id;
-        this.userId = userId;
-        this.userName = userName;
+        this.user_id = user_id;
+        this.user_name = user_name;
         this.operation = operation;
         this.time = time;
         this.method = method;
         this.params = params;
         this.ip = ip;
-        this.createTime = createTime;
+        this.create_time = create_time;
     }
 
     public SysLog() {
@@ -48,20 +48,20 @@ public class SysLog implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUser_name(String user_name) {
+        this.user_name = user_name == null ? null : user_name.trim();
     }
 
     public String getOperation() {
@@ -104,12 +104,12 @@ public class SysLog implements Serializable {
         this.ip = ip == null ? null : ip.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 
     @Override
@@ -125,14 +125,14 @@ public class SysLog implements Serializable {
         }
         SysLog other = (SysLog) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getOperation() == null ? other.getOperation() == null : this.getOperation().equals(other.getOperation()))
-            && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
-            && (this.getMethod() == null ? other.getMethod() == null : this.getMethod().equals(other.getMethod()))
-            && (this.getParams() == null ? other.getParams() == null : this.getParams().equals(other.getParams()))
-            && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+                && (this.getUser_id() == null ? other.getUser_id() == null : this.getUser_id().equals(other.getUser_id()))
+                && (this.getUser_name() == null ? other.getUser_name() == null : this.getUser_name().equals(other.getUser_name()))
+                && (this.getOperation() == null ? other.getOperation() == null : this.getOperation().equals(other.getOperation()))
+                && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
+                && (this.getMethod() == null ? other.getMethod() == null : this.getMethod().equals(other.getMethod()))
+                && (this.getParams() == null ? other.getParams() == null : this.getParams().equals(other.getParams()))
+                && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
+                && (this.getCreate_time() == null ? other.getCreate_time() == null : this.getCreate_time().equals(other.getCreate_time()));
     }
 
     @Override
@@ -140,14 +140,14 @@ public class SysLog implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
+        result = prime * result + ((getUser_id() == null) ? 0 : getUser_id().hashCode());
+        result = prime * result + ((getUser_name() == null) ? 0 : getUser_name().hashCode());
         result = prime * result + ((getOperation() == null) ? 0 : getOperation().hashCode());
         result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
         result = prime * result + ((getMethod() == null) ? 0 : getMethod().hashCode());
         result = prime * result + ((getParams() == null) ? 0 : getParams().hashCode());
         result = prime * result + ((getIp() == null) ? 0 : getIp().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getCreate_time() == null) ? 0 : getCreate_time().hashCode());
         return result;
     }
 }
