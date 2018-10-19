@@ -66,9 +66,8 @@ Vue.component('tree', {
         },
 
         selChange(node){
-            console.log(node);
-            this.selectNode = node;
-            this.$emit('cache-node', node);
+            this.selectNode = node[0];
+            this.$emit('cache-node', node[0]);
         },
 
         // // 异步加载的方法

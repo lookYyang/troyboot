@@ -24,10 +24,8 @@ public class SysOrgServiceImpl implements SysOrgService {
 
     @Override
     public PageUtils list(Map<String, Object> params) {
-        int limit = params.get("limit") == "" ? 1 : Integer.valueOf(params.get("limit").toString());
-        int offset = params.get("offset") == "" ? 15 : Integer.valueOf(params.get("offset").toString());
-        PageHelper.startPage(limit, offset, true);
-        List<Map<String, Object>> sysOrgs = sysOrgDao.selectAll();
+        PageHelper.startPage(params);
+        List<Map<String, Object>> sysOrgs = sysOrgDao.selectAll(params);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(sysOrgs);
         PageUtils pageUtils = new PageUtils(sysOrgs, pageInfo.getTotal());
         return pageUtils;

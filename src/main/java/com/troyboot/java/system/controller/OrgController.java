@@ -47,7 +47,7 @@ public class OrgController {
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
     @GetMapping("/orgTree")
     @ResponseBody
-    public OutMessage getTree() {
+    public OutMessage getTree(){
         return sysOrgService.getTree();
     }
 

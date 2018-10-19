@@ -1,7 +1,7 @@
 Vue.component('table-page', {
     template: '<div>' +
                 '<i-table border stripe ref="selection" :loading="loading" :columns="columns" :data="tableData" @on-selection-change="selChange"></i-table>' +
-                '<Page show-total v-if="showPages" :total="pageTotal" :page-size="offset" @on-change="pageChange" style="float:left;margin-top:10px;"/>' +
+                '<Page show-total v-if="showPages" :total="pageTotal" :page-size="pageSize" @on-change="pageChange" style="float:left;margin-top:10px;"/>' +
               '</div>',
     data: function () {
         return {
@@ -10,8 +10,8 @@ Vue.component('table-page', {
             pageTotal: 0,
             selectRows: [],
             // 分页需要的参数
-            limit: 1,
-            offset: ''
+            pageNum: 1,
+            pageSize: ''
         }
     },
     props: {
@@ -28,7 +28,7 @@ Vue.component('table-page', {
             type: Boolean,
             default: true
         },
-        offset: {
+        pageSize: {
             type: Number,
             default: 15
         },
@@ -45,8 +45,8 @@ Vue.component('table-page', {
 
     },
     methods: {
-        pageChange(limit) {
-            this.limit = limit;
+        pageChange(pageNum) {
+            this.pageNum = pageNum;
             this.loadData();
         },
 
@@ -62,11 +62,11 @@ Vue.component('table-page', {
             var self = this;
             // 如果需要分页，把分页数据添加到参数中
             if(this.showPages){
-                this.searchParams.limit = this.limit;
-                this.searchParams.offset = this.offset;
+                this.searchParams.pageNum = this.pageNum;
+                this.searchParams.pageSize = this.pageSize;
             }
             if(tbSearchParams){
-                this.searchParams = _.concat(this.searchParams, tbSearchParams);
+                this.searchParams = _.assign(this.searchParams, tbSearchParams);
             }
             this.loading = true;
             $.ajax({

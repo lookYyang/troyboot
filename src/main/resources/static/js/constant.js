@@ -11,8 +11,8 @@ var Global = {
     // 默认路径地址
 	baseUrl: "/api",
     // 默认分页长度
-	limit: '15',
-    offset: '1',
+    pageSize: '15',
+    pageNum: '1',
 }
 
 var CODE = {

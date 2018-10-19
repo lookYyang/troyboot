@@ -24,5 +24,11 @@
     from sys_user
     where is_delete = '0'
   </select>
-
+  <select id="getUserByAccount" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select *
+    from sys_user
+    <where>
+      account = #{account}
+    </where>
+  </select>
 </mapper>

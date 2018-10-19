@@ -15,7 +15,7 @@ import java.util.Map;
 @Mapper
 public interface SysOrgDao {
 
-    List<Map<String, Object>> selectAll();
+    List<Map<String, Object>> selectAll(Map<String,Object> map);
 
     List<SysOrg> getTreeByCascade(Map<String, Object> params);
 
