@@ -67,10 +67,10 @@
                 let self = this;
                 self.tableLoading = true;
                 $.ajax({
-                    type : 'get',
-                    url : Global.baseUrl + self.tableUrl,
+                    type: 'get',
+                    url: Global.baseUrl + self.tableUrl,
                     success: function(data) {
-                        if(_.isEqual(data.code, 200)){
+                        if(_.isEqual(data.code, CODE.SUCCESS_CODE)){
                             self.tableData = data.rows;
                             self.tableLoading = false;
                         }

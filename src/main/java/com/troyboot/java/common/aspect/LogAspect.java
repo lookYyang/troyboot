@@ -1,9 +1,6 @@
 package com.troyboot.java.common.aspect;
 
-import com.troyboot.java.common.utils.HttpContextUtils;
-import com.troyboot.java.common.utils.IPUtils;
-import com.troyboot.java.common.utils.JSONUtils;
-import com.troyboot.java.common.utils.ShiroUtils;
+import com.troyboot.java.common.utils.*;
 import com.troyboot.java.common.annotation.Log;
 import com.troyboot.java.common.po.SysLog;
 import com.troyboot.java.system.po.SysUser;
@@ -48,10 +45,10 @@ public class LogAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         SysLog sysLog = new SysLog();
-        Log syslog = method.getAnnotation(Log.class);
-        if (syslog != null) {
+        Log log = method.getAnnotation(Log.class);
+        if (log != null) {
             // 注解上的描述
-            sysLog.setOperation(syslog.value());
+            sysLog.setOperation(log.value());
         }
         // 请求的方法名
         String className = joinPoint.getTarget().getClass().getName();
@@ -66,9 +63,9 @@ public class LogAspect {
 
         }
         // 获取request
-        HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+        HttpServletRequest request = CommonUtils.getHttpServletRequest();
         // 设置IP地址
-        sysLog.setIp(IPUtils.getIpAddr(request));
+        sysLog.setIp(CommonUtils.getIpAddr(request));
         // 用户名
         SysUser currUser = ShiroUtils.getUser();
         if (null == currUser) {
@@ -84,9 +81,7 @@ public class LogAspect {
             sysLog.setUser_name(ShiroUtils.getUser().getName());
         }
         sysLog.setTime((int) time);
-        // 系统当前时间
-        Date date = new Date();
-        sysLog.setCreate_time(date);
+        sysLog.setCreate_time(new Date());
         // 保存系统日志
         logService.save(sysLog);
     }
